@@ -1,27 +1,29 @@
 import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {AppDispatch, RootState} from '../../state/store';
+import {useDispatch} from 'react-redux';
 import {fetchWeatherBySearchRequest} from '../features/weatherSlice';
 import {format} from 'date-fns';
 import {
     CardContainer,
     City,
     InfoDate,
-    LocationDescriptionElementContainer,
+    LocationDescriptionContainer,
     LocationTemperatureContainer, Temperature, TemperatureIcon
 } from "./ThisDayStyles";
 
+import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {Skeleton} from "../../skeleton/Skeleton";
+
 export const ThisDay = () => {
-    const dispatch = useDispatch<AppDispatch>();
-    const weather = useSelector((state: RootState) => state.weather);
-    const unit = useSelector((state: RootState) => state.weather.unit);
+    const dispatch = useDispatch();
+    const weather = useTypedSelector((state) => state.weather);
+    const unit = useTypedSelector((state) => state.weather.unit);
 
     useEffect(() => {
         dispatch(fetchWeatherBySearchRequest({location: "Moscow", weatherUnit: unit}));
     }, [dispatch, unit]);
 
     if (weather.loading) {
-        return <p>Loading...</p>;
+        return <Skeleton height="200px" width="250px"/>;
     }
     if (weather.error) {
         return <p>Error: {weather.error}</p>;
@@ -41,9 +43,10 @@ export const ThisDay = () => {
         const iconUrl = `https://openweathermap.org/img/w/${weather?.currentWeather?.weather[0].icon}.png`;
         return <img src={iconUrl} alt="Weather Icon"/>;
     }
+
     return (
         <LocationTemperatureContainer>
-            <LocationDescriptionElementContainer>
+            <LocationDescriptionContainer>
                 <CardContainer>
                     <InfoDate>{formattedDate}</InfoDate>
                     <City>{weather.currentWeather.name}</City>
@@ -51,7 +54,7 @@ export const ThisDay = () => {
                         {resultTempMax}°/{resultTempMin}°
                     </Temperature>
                 </CardContainer>
-            </LocationDescriptionElementContainer>
+            </LocationDescriptionContainer>
             <TemperatureIcon>
                 <WeatherIcon/>
             </TemperatureIcon>

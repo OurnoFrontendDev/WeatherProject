@@ -3,20 +3,44 @@ import styled from "styled-components";
 export const AppWrapper = styled.main`
     display: flex;
     flex-direction: column;
-    height: 84.6vh;
-    width: 66.5vw;
-    background-color: ${({theme}) => theme.background};
+    background-color: ${({ theme }) => theme['--app-background-color']};
+    height: 787px;
+    width: 1276px;
+    margin-top: 20px;
     
-    @media screen and  (max-width: 500px) {
-        width: 100vw;
-        height: 100vh;
+    @media screen and (max-width:1024px) {
+        width: 1024px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @media screen and (max-width:768px) {
+        width: 768px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @media screen and (max-width:973px) {
+        width: 973px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @media screen and (max-width:1121px) {
+        width: 1121px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    @media screen and (max-width:969px) {
+        width: 968px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 100px;
     }
 `;
-export const HeaderContainer = styled.header`
-    width: 100%;
-    height: 5.6%;
-    margin-top: 2.8%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-`

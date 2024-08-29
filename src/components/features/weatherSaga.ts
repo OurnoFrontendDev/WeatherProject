@@ -6,10 +6,8 @@ import {
     fetchWeatherFailure, setTemperatureUnit,
 } from './weatherSlice';
 import {RootState} from "../../state/store";
-import {WeatherResponse} from "../../types/stateType";
-
-export const API_KEY = 'fe4feefa8543e06d4f3c66d92c61b69c';
-export const BASE_URL = 'https://api.openweathermap.org/data/2.5';
+import {WeatherResponse} from "../../types/weather";
+import {API_KEY, BASE_URL} from "../../env";
 
 function* fetchWeatherData(action: ReturnType<typeof fetchWeatherBySearchRequest>) {
     try {
@@ -38,10 +36,11 @@ function* fetchWeatherData(action: ReturnType<typeof fetchWeatherBySearchRequest
                 },
             }
         );
+
         const combinedData = {
             ...currentWeatherResponse.data,
             daily: forecastResponse.data.daily,
-            hourly: forecastResponse.data.hourly
+            hourly: forecastResponse.data.hourly,
         };
         yield put(fetchWeatherBySearchSuccess(combinedData));
     } catch (error: any) {
@@ -55,7 +54,7 @@ export function* watchFetchWeather() {
 }
 
 function* handleTemperatureUnitChange() {
-    const location: string  = yield select(
+    const location: string = yield select(
         (state: RootState) => state.weather.currentWeather?.name
     );
     const weatherUnit: 'metric' | 'imperial' = yield select(

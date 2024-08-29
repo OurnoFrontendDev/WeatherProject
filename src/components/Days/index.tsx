@@ -1,17 +1,28 @@
-import React, {useState} from "react";
-import {useSelector} from "react-redux";
-import {RootState} from "../../state/store";
+import React, {useEffect, useMemo, useState} from "react";
 import {
-    ArrowButton,
+    ArrowButton, DateTimeStyle,
     ForecastContainer,
     ForecastItemContainer,
     ForecastTextContainer,
-    ForecastWrapper, ScrollArea
-} from "./Day'sStyledCompmonents";
+    ForecastWrapper, ScrollArea, TempStyle
+} from "./DayStyledComponents";
+import {Skeleton} from "../../skeleton/Skeleton";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
+
+
+const visibleAreaWidth = 1000;
+const scrollStep = 100;
 
 export const Days: React.FC = () => {
     const [scrollPosition, setScrollPosition] = useState(0);
-    const dailyForecasts = useSelector((state: RootState) => state.weather.forecasts?.hourly || []);
+    const [isLoading, setIsLoading] = useState(true);
+    const dailyForecasts = useTypedSelector((state) => state.weather.forecasts?.hourly || []);
+
+    useEffect(() => {
+        if (dailyForecasts.length > 0) {
+            setIsLoading(false);
+        }
+    }, [dailyForecasts]);
 
     const formatTime = (timestamp: number) => {
         const date = new Date(timestamp * 1000);
@@ -21,23 +32,25 @@ export const Days: React.FC = () => {
         hours = hours % 12;
         hours = hours ? hours : 12;
         const minutesStr = minutes < 10 ? `0${minutes}` : minutes;
+
         return `${hours}:${minutesStr} ${ampm}`;
     };
 
 
     const getFilteredHourlyData = () => {
         const now = new Date();
-        const startOfDay = new Date(now.setHours(1, 0, 0, 0)).getTime() / 1000;
-        const endOfDay = new Date(now.setHours(23, 0, 0, 0)).getTime() / 1000;
+        const startOfDay = new Date(now.setHours(1, 0, 0, 0)).getTime() / visibleAreaWidth;
+        const endOfDay = new Date(now.setHours(23, 0, 0, 0)).getTime() / visibleAreaWidth;
 
         return dailyForecasts.filter(hour => hour.dt >= startOfDay && hour.dt <= endOfDay);
     };
 
-    const filteredData = getFilteredHourlyData();
-    filteredData.sort((a, b) => a.dt - b.dt);
-    const maxScroll = (filteredData.length * 110) - 400;
+    const filteredData = useMemo(() => {
+            return getFilteredHourlyData().sort((a, b) => a.dt - b.dt);
+        },
+        [dailyForecasts]);
 
-    const scrollStep = 100;
+    const maxScroll = (filteredData.length * 110) - visibleAreaWidth;
 
     const handleScroll = (direction: 'left' | 'right') => {
         if (direction === 'left') {
@@ -47,17 +60,19 @@ export const Days: React.FC = () => {
         }
     };
 
-    const WeatherIcon: React.FC<{ iconCode: string }> = ({ iconCode }) => {
+    const WeatherIcon: React.FC<{ iconCode: string }> = ({iconCode}) => {
         const iconUrl = `https://openweathermap.org/img/w/${iconCode}.png`;
-        return <img src={iconUrl} alt="Weather Icon" />;
+
+        return <img src={iconUrl} alt="Weather Icon"/>;
     };
 
-    const arrMap = filteredData.map((hour, index) => (
+    const weatherMappingData = filteredData.map((hour, index) => (
         <ForecastItemContainer key={index}>
-            <div>{formatTime(hour.dt)}</div>
-            <WeatherIcon iconCode={hour.weather[0].icon} />
-            <div>{hour.temp.day}°</div>
+            <DateTimeStyle>{formatTime(hour.dt)}</DateTimeStyle>
+            <WeatherIcon iconCode={hour.weather[0].icon}/>
+            <TempStyle>{hour.temp ? `${Math.round(Number(hour.temp))}°` : 'N/A'}</TempStyle>
         </ForecastItemContainer>
+
     ));
 
     const isRightArrowDisabled = scrollPosition >= maxScroll;
@@ -74,8 +89,12 @@ export const Days: React.FC = () => {
                 >
                     ◀
                 </ArrowButton>
-                <ScrollArea style={{ transform: `translateX(-${scrollPosition}px)` }}>
-                    {arrMap}
+                <ScrollArea style={{transform: `translateX(-${scrollPosition}px)`}}>
+                    {isLoading ? (
+                            <Skeleton height={"100px"} width={"753px"}/>
+                    ) : (
+                        weatherMappingData
+                    )}
                 </ScrollArea>
                 <ArrowButton
                     direction="right"

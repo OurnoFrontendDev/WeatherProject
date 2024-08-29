@@ -1,9 +1,7 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {setTheme} from "../features/themeSlice";
-import {RootState} from "../../state/store";
+import React from 'react';
 import DarkModeIcon from "../../icons/DarkModeIcon.svg";
 import LightModeIcon from "../../icons/LightModeIcon.svg";
+import {useTheme} from "../../hooks/useTheme";
 import {Icon} from "../svg/SvgLoader";
 import {
     HiddenInputThemeToggle,
@@ -13,30 +11,23 @@ import {
 } from "./toggleThemeStyles";
 
 export const ToggleSwitchTheme = () => {
-    const dispatch = useDispatch();
-    const theme = useSelector((state: RootState) => state.theme.theme);
-    const isLight = theme === 'light';
-    useEffect(() => {
-        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        dispatch(setTheme(systemTheme));
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        const handleSystemThemeChange = (e: MediaQueryListEvent) => {
-            dispatch(setTheme(e.matches ? 'dark' : 'light'));
-        };
-        mediaQuery.addEventListener('change', handleSystemThemeChange);
-        return () => {
-            mediaQuery.removeEventListener('change', handleSystemThemeChange);
-        };
-    }, [dispatch]);
+    const {theme, changeTheme} = useTheme();
+    console.log('Current theme:', theme);
+
+    const isLight = theme === 'lightTheme'; // Проверяем, светлая ли тема
 
     const toggleTheme = () => {
-        dispatch(setTheme(theme === 'light' ? 'dark' : 'light'));
+        console.log('Toggle theme clicked');
+        changeTheme(isLight ? 'darkTheme' : 'lightTheme'); // Переключаем на противоположную тему
+        console.log('New theme:', isLight ? 'darkTheme' : 'lightTheme');
     };
+
     return (
         <SwitchLabelThemeToggle>
             <HiddenInputThemeToggle
                 type="checkbox"
                 onChange={toggleTheme}
+                checked={!isLight}
             />
             <ToggleThumbThemeToggle checked={!isLight}/>
             <LabelImageThemeToggle position="left" active={isLight}>

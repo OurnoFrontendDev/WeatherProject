@@ -1,6 +1,4 @@
 import React from 'react';
-import {useSelector} from "react-redux";
-import {RootState} from "../../state/store";
 import {format} from "date-fns";
 import {
     DaysForecastText, ForecastIcon, IconDescription,
@@ -12,14 +10,18 @@ import {
     WeekForecastTextContainer,
     WeekForecastWrapper
 } from './weekForecastStyles';
+import {Skeleton} from "../../skeleton/Skeleton";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
 
 export const WeekForecast = () => {
-    const dailyForecasts = useSelector((state: RootState) => state.weather.forecasts?.daily || []);
+
+    const dailyForecasts = useTypedSelector((state) => state.weather.forecasts.daily || []);
 
     const dailyForecastsDateTime = dailyForecasts.slice(1, 8).map(forecast => {
         const timestamp = forecast.dt * 1000;
         const dateObject = new Date(timestamp);
         const formattedDate = format(dateObject, 'd MMM, EEEE');
+
         return {
             formattedDate,
             tempMin: Math.floor(forecast.temp.min),
@@ -28,6 +30,10 @@ export const WeekForecast = () => {
             icon: forecast.weather[0]?.icon
         };
     });
+
+    if (dailyForecasts.length === 0) {
+        return <Skeleton height={"100%"} width={"100%"}/>;
+    }
 
     return (
         <WeekForecastWrapper>

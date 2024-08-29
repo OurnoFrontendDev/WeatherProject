@@ -28,7 +28,7 @@ export const ToggleThumb = styled.div<{ checked: boolean }>`
     left: ${(props) => (props.checked ? 'calc(100% - 1.75rem - 2px)' : '1px')};
     height: 1.75rem; /* 7 * 0.25rem */
     width: 1.75rem;
-    background-color: #4f46e5; /* bg-indigo-400 */
+    background-color: #4f46e5;
     border-radius: 50%;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     transform: translateY(-50%);

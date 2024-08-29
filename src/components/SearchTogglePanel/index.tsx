@@ -3,14 +3,14 @@ import {TempUnitSwitcher} from "../TempUnitSwitcher";
 import {SearchCityWeather} from "../cityWeatherSearch";
 import {ToggleSwitchTheme} from "../toggleTheme";
 import {
-    CityFinderTemperatureSwitchThemeSwitchBarContainer,
+    CityTempThemeSwitchContainer,
     SearchCityWeatherContainer, ToggleSwitchTempUnitContainer, ToggleSwitchThemeContainer
 } from "./SearchTogglePanelStyles";
 
 export const SearchTogglePanelContainer = () => {
-    return (<>
-
-            <CityFinderTemperatureSwitchThemeSwitchBarContainer>
+    return (
+        <>
+            <CityTempThemeSwitchContainer>
                 <SearchCityWeatherContainer>
                     <SearchCityWeather/>
                 </SearchCityWeatherContainer>
@@ -20,7 +20,7 @@ export const SearchTogglePanelContainer = () => {
                 <ToggleSwitchTempUnitContainer>
                     <TempUnitSwitcher/>
                 </ToggleSwitchTempUnitContainer>
-            </CityFinderTemperatureSwitchThemeSwitchBarContainer>
+            </CityTempThemeSwitchContainer>
         </>
     );
 };

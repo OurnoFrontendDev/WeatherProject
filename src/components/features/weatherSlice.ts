@@ -1,5 +1,16 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {initialState, WeatherResponse} from "../../types/stateType";
+import {WeatherResponse, WeatherState} from "../../types/weather";
+
+export const initialState: WeatherState = {
+    loading: false,
+    error: null,
+    currentWeather: null ,
+    forecasts: {
+        hourly: [],
+        daily: [],
+    },
+    unit: 'metric'
+};
 
 const weatherSlice = createSlice({
     name: 'weather',
@@ -19,6 +30,7 @@ const weatherSlice = createSlice({
                 hourly: action.payload.hourly || [],
                 daily: action.payload.daily || [],
             };
+
         },
         fetchWeatherFailure: (state, action: PayloadAction<string>) => {
             state.loading = false;

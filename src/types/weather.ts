@@ -76,20 +76,10 @@ export type WeatherResponse = {
 export type WeatherState = {
     loading: boolean;
     error: string | null;
-    currentWeather: any;
+    currentWeather: WeatherResponse;
     forecasts: {
         hourly: Forecast[];
         daily: Forecast[];
     };
     unit: 'metric' | 'imperial';
 }
-export const initialState: WeatherState = {
-    loading: false,
-    error: null,
-    currentWeather: null,
-    forecasts: {
-        hourly: [],
-        daily: [],
-    },
-    unit: 'metric'
-};

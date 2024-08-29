@@ -4,8 +4,6 @@ import NunitoMedium from "./Nunito-Medium.ttf";
 import NunitoRegular from "./Nunito-Regular.ttf";
 import NunitoSemiBold from "./Nunito-SemiBold.ttf";
 
-
-
 export const FontStyles = createGlobalStyle`
     @font-face {
         font-family: 'Nunito';

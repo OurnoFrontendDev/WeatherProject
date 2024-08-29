@@ -1,30 +1,24 @@
 import React from 'react';
-import "/src/styles/App.scss"
-import {useSelector} from "react-redux";
-import {ThemeProvider} from "styled-components";
-import {darkTheme, lightTheme} from "./themes";
-import {GlobalStyle} from "./index";
-import {RootState} from "./state/store";
 import {FontStyles} from "./fonts/fontStyles";
 import {SearchTogglePanelContainer} from "./components/SearchTogglePanel";
 import {WeatherUnionInfo} from "./components/WeatherUnionInfo";
-import {AppWrapper, HeaderContainer} from "./AppStyles";
+import {AppWrapper} from "./AppStyles";
+import {GlobalStyle} from "./GlobalStyle";
+import {ThemeProvider} from "./provider";
 
 function App() {
-    const theme = useSelector((state: RootState) => state.theme?.theme);
-    return (<>
-            <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
-                <FontStyles/>
+    return (
+        <>
+            <ThemeProvider>
                 <GlobalStyle/>
+                <FontStyles/>
                 <AppWrapper>
-                    <HeaderContainer>
-                        <SearchTogglePanelContainer/>
-                    </HeaderContainer>
+                    <SearchTogglePanelContainer/>
                     <WeatherUnionInfo/>
                 </AppWrapper>
             </ThemeProvider>
         </>
-
     )
 }
+
 export default App;

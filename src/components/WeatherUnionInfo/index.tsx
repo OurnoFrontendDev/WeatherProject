@@ -14,15 +14,14 @@ export const WeatherUnionInfo = () => {
     return (
         <WeatherUnionInfoContainer>
             <WeatherTownInfoContainer>
-                <ThisDay></ThisDay>
+                <ThisDay/>
                 <ForeCastContainer>
-                    <Days></Days>
-                    <WeatherDetails></WeatherDetails>
+                    <Days/>
+                    <WeatherDetails/>
                 </ForeCastContainer>
             </WeatherTownInfoContainer>
             <WeekForecastContainer>
-                <WeekForecast>
-                </WeekForecast>
+                <WeekForecast/>
             </WeekForecastContainer>
         </WeatherUnionInfoContainer>
     )
