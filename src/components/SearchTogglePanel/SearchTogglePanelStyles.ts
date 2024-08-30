@@ -3,45 +3,30 @@ import styled from "styled-components";
 export const CityTempThemeSwitchContainer = styled.section`
     display: flex;
     justify-content: center;
-    width: 1276px;
+    width: 100%;
     height: 40px;
     margin-top: 29px;
     
-    @media screen and (max-width:1024px) {
-        width: 100%;
+    @media screen and (min-width: 320px) and (max-width: 768px) {
+        margin-top: 8px;
     }
-    @media screen and (max-width:1121px) {
-        width: 100%;
+    
+    @media screen and (min-width: 768px) and (max-width: 992px) {
+        width: 100vw;  
+        height: 5vh;;
     }
 `
 export const SearchCityWeatherContainer = styled.div`
     display: flex;
     width: 830px;
-    margin-left: 219px;
 
-    @media screen and (max-width:1024px) {
+    @media screen and (min-width: 320px) and (max-width: 768px ) {
+        width: 70vw;
         margin-left: 0;
     }
-
-    @media screen and (max-width:768px) {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-left: 30px;
-        width: 100%;
+    @media screen and (min-width: 768px) and (max-width: 992px ) {
+        width: 80vw;
     }
-
-    @media screen and (max-width:973px) {
-        width: 886px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    @media screen and (max-width:1121px) {
-        margin-left: 0;
-    }
-    
 `
 export const ToggleSwitchTempUnitContainer = styled.div`
     display: flex;

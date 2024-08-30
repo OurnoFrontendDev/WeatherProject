@@ -1,54 +1,21 @@
 import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {fetchWeatherBySearchRequest} from "../features/weatherSlice";
-import styled from 'styled-components';
-import {fonts} from "../../fonts/fontStyles";
 import {debounce} from 'lodash';
 import axios from "axios";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {InputSearchBar, ULSearchList} from "./SearchCityWeatherStyle";
 
 interface City {
     name: string;
     country_name: string;
 }
-const InputSearchBar = styled.input
-    `
-        &::placeholder {
-            padding-left: 6px;
-            padding-top: 20px;
-            letter-spacing: 0.15px;
-            font-family: ${fonts.Body};
-        }
-
-        background-color: ${({theme}) => theme['input-background-color']};
-        width: 828px;
-        height: 35px;
-        box-sizing: border-box;
-        border-radius: 8px;
-        border: none;
-        outline: none;
-        padding-left: 30px;
-
-        @media screen and (max-width: 768px) {
-            margin-left: 30px;
-            width: 400px;
-        }
-        @media screen and (max-width: 973px) {
-            width: 760px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        @media screen and (max-width: 375px) {
-            width: 197px;
-            margin-left: 0;
-        }
-    `
 
 export const SearchCityWeather = () => {
     const [city, setCity] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
+
     const dispatch = useDispatch();
     const weather = useTypedSelector((state) => state.weather);
 
@@ -107,18 +74,7 @@ export const SearchCityWeather = () => {
                 placeholder="Enter city name"
             />
             {showSuggestions && suggestions.length > 0 && (
-                <ul style={{
-                    position: 'absolute',
-                    top: '100%',
-                    left: 0,
-                    right: 0,
-                    backgroundColor: '#fff',
-                    border: '1px solid #ccc',
-                    zIndex: 1000,
-                    listStyle: 'none',
-                    padding: 0,
-                    margin: 0
-                }}>
+                <ULSearchList>
                     {suggestions.map((suggestion: City, index: number) => (
                         <li
                             key={index}
@@ -131,7 +87,7 @@ export const SearchCityWeather = () => {
                             {suggestion.name}, {suggestion.country_name}
                         </li>
                     ))}
-                </ul>
+                </ULSearchList>
             )}
         </div>
     );

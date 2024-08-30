@@ -6,23 +6,25 @@ import {Days} from "../Days";
 import {
     ForeCastContainer,
     WeatherTownInfoContainer,
-    WeatherUnionInfoContainer,
+    WeatherUnionContainer, WeatherUnionInfoContainer,
     WeekForecastContainer
 } from "./WeatherUnionInfoStyles";
 
 export const WeatherUnionInfo = () => {
     return (
-        <WeatherUnionInfoContainer>
-            <WeatherTownInfoContainer>
-                <ThisDay/>
-                <ForeCastContainer>
-                    <Days/>
-                    <WeatherDetails/>
-                </ForeCastContainer>
-            </WeatherTownInfoContainer>
-            <WeekForecastContainer>
-                <WeekForecast/>
-            </WeekForecastContainer>
-        </WeatherUnionInfoContainer>
+        <WeatherUnionContainer>
+            <WeatherUnionInfoContainer>
+                <WeatherTownInfoContainer>
+                    <ThisDay/>
+                    <ForeCastContainer>
+                        <Days/>
+                        <WeatherDetails/>
+                    </ForeCastContainer>
+                </WeatherTownInfoContainer>
+                <WeekForecastContainer>
+                    <WeekForecast/>
+                </WeekForecastContainer>
+            </WeatherUnionInfoContainer>
+        </WeatherUnionContainer>
     )
 };

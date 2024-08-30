@@ -10,7 +10,7 @@ import {Skeleton} from "../../skeleton/Skeleton";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 
 
-const visibleAreaWidth = 1000;
+const visibleAreaWidth = 800;
 const scrollStep = 100;
 
 export const Days: React.FC = () => {
@@ -39,17 +39,14 @@ export const Days: React.FC = () => {
 
     const getFilteredHourlyData = () => {
         const now = new Date();
-        const startOfDay = new Date(now.setHours(1, 0, 0, 0)).getTime() / visibleAreaWidth;
-        const endOfDay = new Date(now.setHours(23, 0, 0, 0)).getTime() / visibleAreaWidth;
+        const startOfDay = new Date(now.setHours(1, 0, 0, 0)).getTime() / 1000;
+        const endOfDay = new Date(now.setHours(23, 0, 0, 0)).getTime() / 1000;
 
         return dailyForecasts.filter(hour => hour.dt >= startOfDay && hour.dt <= endOfDay);
     };
 
-    const filteredData = useMemo(() => {
-            return getFilteredHourlyData().sort((a, b) => a.dt - b.dt);
-        },
-        [dailyForecasts]);
-
+    const filteredData = getFilteredHourlyData();
+    filteredData.sort((a, b) => a.dt - b.dt);
     const maxScroll = (filteredData.length * 110) - visibleAreaWidth;
 
     const handleScroll = (direction: 'left' | 'right') => {

@@ -5,10 +5,19 @@ export const ForecastWrapper = styled.section`
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 181px;
+    height: 193px;
     border-radius: 22px;
     border: ${({theme}) => theme['--border-style']};;
     background-color: ${({theme}) => theme['--card-main-background-color']};
+
+    @media screen and (min-width: 320px) and (max-width: 768px) {
+        width: 100vw;
+        height: 20vh;
+    }
+    @media screen and (min-width: 768px) and (max-width: 992px) {
+        width: 100%;
+        height: 20vh;
+    }
 `
 export const ForecastContainer = styled.div`
     display: flex;
@@ -17,6 +26,7 @@ export const ForecastContainer = styled.div`
     border-radius: 8px;
     position: relative;
     margin-top: 6px;
+
 `;
 export const ForecastTextContainer = styled.div`
     display: flex;
@@ -26,6 +36,11 @@ export const ForecastTextContainer = styled.div`
     padding-top: 2px;
     color: ${({theme}) => theme['--card-title-color']};
     font-family: ${fonts.Body_2};
+
+    @media screen and (min-width: 320px) and (max-width: 768px) {
+        width: 100vw;
+        margin-top: 0;
+    }
 `;
 
 export const ScrollArea = styled.div`

@@ -25,12 +25,12 @@ export const ThisDay = () => {
     if (weather.loading) {
         return <Skeleton height="200px" width="250px"/>;
     }
-    if (weather.error) {
-        return <p>Error: {weather.error}</p>;
+    if (weather.loading) {
+        return <Skeleton height="200px" width="250px"/>;
     }
 
     if (!weather.currentWeather) {
-        return <p>No weather data available</p>;
+        return <Skeleton height="200px" width="250px"/>;
     }
 
     const {temp_max, temp_min} = weather.currentWeather.main;
@@ -40,8 +40,10 @@ export const ThisDay = () => {
     const formattedDate = format(today, 'd MMM, EEEE');
 
     function WeatherIcon() {
-        const iconUrl = `https://openweathermap.org/img/w/${weather?.currentWeather?.weather[0].icon}.png`;
-        return <img src={iconUrl} alt="Weather Icon"/>;
+        const iconUrl = `https://openweathermap.org/img/w/${weather.currentWeather.weather[0].icon}.png`;
+        return (
+            <img src={iconUrl} alt="Weather Icon"/>
+        );
     }
 
     return (

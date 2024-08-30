@@ -12,14 +12,9 @@ import {
 
 export const ToggleSwitchTheme = () => {
     const {theme, changeTheme} = useTheme();
-    console.log('Current theme:', theme);
-
-    const isLight = theme === 'lightTheme'; // Проверяем, светлая ли тема
-
+    const isLight = theme === 'lightTheme';
     const toggleTheme = () => {
-        console.log('Toggle theme clicked');
-        changeTheme(isLight ? 'darkTheme' : 'lightTheme'); // Переключаем на противоположную тему
-        console.log('New theme:', isLight ? 'darkTheme' : 'lightTheme');
+        changeTheme(isLight ? 'darkTheme' : 'lightTheme');
     };
 
     return (

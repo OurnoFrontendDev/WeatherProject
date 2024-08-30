@@ -8,10 +8,3 @@ export const ContainerStyles = `
     display: flex;
     width: 100%;
 `;
-
-export const DefaultFlexSettings = css`
-    display: flex;
-    height: 100%;
-    width: 100%;
-   
-`

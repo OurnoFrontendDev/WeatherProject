@@ -1,6 +1,6 @@
 import React from 'react';
 import {TempUnitSwitcher} from "../TempUnitSwitcher";
-import {SearchCityWeather} from "../cityWeatherSearch";
+import {SearchCityWeather} from "../searchCityWeather";
 import {ToggleSwitchTheme} from "../toggleTheme";
 import {
     CityTempThemeSwitchContainer,

@@ -8,7 +8,9 @@ export interface Theme {
     '--border-style': string;
     '--input-background-color': string
     '--arrow-color': string
-    'input-background-color':string
+    'input-background-color': string
+
+
 }
 
 export const lightTheme: Theme = {
