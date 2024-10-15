@@ -1,38 +1,37 @@
-import React from 'react';
+import React from "react";
 import DarkModeIcon from "../../icons/DarkModeIcon.svg";
 import LightModeIcon from "../../icons/LightModeIcon.svg";
-import {useTheme} from "../../hooks/useTheme";
-import {Icon} from "../svg/SvgLoader";
+import { useTheme } from "../../hooks/useTheme";
+import { Icon } from "../svg/SvgLoader";
 import {
-    HiddenInputThemeToggle,
-    LabelImageThemeToggle,
-    SwitchLabelThemeToggle,
-    ToggleThumbThemeToggle
+  HiddenInputThemeToggle,
+  LabelImageThemeToggle,
+  SwitchLabelThemeToggle,
+  ToggleThumbThemeToggle,
 } from "./toggleThemeStyles";
+import { useGetIconSize } from "../../hooks/useGetIconSize";
 
 export const ToggleSwitchTheme = () => {
-    const {theme, changeTheme} = useTheme();
-    const isLight = theme === 'lightTheme';
-    const toggleTheme = () => {
-        changeTheme(isLight ? 'darkTheme' : 'lightTheme');
-    };
+  const { theme, changeTheme } = useTheme();
 
-    return (
-        <SwitchLabelThemeToggle>
-            <HiddenInputThemeToggle
-                type="checkbox"
-                onChange={toggleTheme}
-                checked={!isLight}
-            />
-            <ToggleThumbThemeToggle checked={!isLight}/>
-            <LabelImageThemeToggle position="left" active={isLight}>
-                <Icon Svg={LightModeIcon} width={15} height={15}></Icon>
-            </LabelImageThemeToggle>
-            <LabelImageThemeToggle position="right" active={!isLight}>
-                <Icon Svg={DarkModeIcon} width={15} height={15}></Icon>
-            </LabelImageThemeToggle>
-        </SwitchLabelThemeToggle>
-    );
+  const isLight = theme === "lightTheme";
+
+  const toggleTheme = () => {
+    changeTheme(isLight ? "darkTheme" : "lightTheme");
+  };
+
+  const { iconToggleThemSize } = useGetIconSize();
+
+  return (
+    <SwitchLabelThemeToggle>
+      <HiddenInputThemeToggle type="checkbox" onChange={toggleTheme} checked={!isLight} />
+      <ToggleThumbThemeToggle checked={!isLight} />
+      <LabelImageThemeToggle $position="left" $isActive={isLight}>
+        <Icon Svg={LightModeIcon} width={iconToggleThemSize} height={iconToggleThemSize}></Icon>
+      </LabelImageThemeToggle>
+      <LabelImageThemeToggle $position="right" $isActive={!isLight}>
+        <Icon Svg={DarkModeIcon} width={iconToggleThemSize} height={iconToggleThemSize}></Icon>
+      </LabelImageThemeToggle>
+    </SwitchLabelThemeToggle>
+  );
 };
-
-

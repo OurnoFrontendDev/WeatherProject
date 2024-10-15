@@ -94,7 +94,7 @@ export default (env: Environment, argv: { mode: string }): Configuration => {
                 template: './public/index.html'
             }),
             new MiniCssExtractPlugin(),
-            new CleanWebpackPlugin(), // Переместите сюда
+            new CleanWebpackPlugin(),
         ]
     };
     if (isDevelopment) {
@@ -103,7 +103,7 @@ export default (env: Environment, argv: { mode: string }): Configuration => {
                 directory: path.join(__dirname, "public")
             },
             compress: true,
-            port: 3000,
+            port: 3004,
             open: true,
             hot: true,
         };

@@ -8,7 +8,6 @@ export const GlobalStyle = createGlobalStyle`
     }
     
     body {
-        transition: all 0.25s linear;
         display: flex;
         justify-content: center;
         align-content: center;

@@ -4,8 +4,9 @@ import styled from 'styled-components';
 const SkeletonWrapper = styled.div`
     background-color: #e0e0e0;
     border-radius: 4px;
-    width: 100%;
-    height: 100%;
+    width: fit-content;
+    height: fit-content;
+    margin-bottom: 5px;
     position: relative;
     overflow: hidden;
 `;
@@ -35,7 +36,7 @@ const Shimmer = styled.div`
     }
 `;
 
-export const Skeleton: React.FC<{ width?: string; height?: string }> = ({ width = '100%', height = '100%' }) => {
+export const Skeleton: React.FC<{ width?: string; height?: string }> = ({ width="100%", height="100%" }) => {
     return (
         <SkeletonWrapper style={{ width, height }}>
             <Shimmer />
