@@ -1,5 +1,5 @@
 import { call, put, takeLatest, select } from "redux-saga/effects";
-import axios, { all, AxiosError, AxiosResponse } from "axios";
+import axios, { all, AxiosResponse } from "axios";
 import {
   fetchWeatherBySearchRequest,
   fetchWeatherBySearchSuccess,
