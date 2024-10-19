@@ -159,6 +159,7 @@ export const CardLabel = styled.div`
 export const WeatherDetailsTitleItem = styled.div`
   display: flex;
 `;
+
 export const WeatherDetailsValueItem = styled.div`
   display: flex;
   flex-direction: row;
@@ -171,9 +172,9 @@ export const WeatherDetailsValueItem = styled.div`
     flex-direction: column;
   }
 
-    @media screen and (min-width: 445px) and (max-width: 500px) {
-        flex-direction: row;
-    }
+  @media screen and (min-width: 445px) and (max-width: 500px) {
+    flex-direction: row;
+  }
 `;
 
 export const CardValue = styled.span`

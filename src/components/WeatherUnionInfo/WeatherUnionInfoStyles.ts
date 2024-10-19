@@ -90,9 +90,9 @@ export const WeekForecastContainer = styled.section`
     width: 100%;
     height: 35%;
   }
-    @media screen and (min-width: 445px) and (max-width: 500px) {
-        height: 35%;
-    }
+  @media screen and (min-width: 445px) and (max-width: 500px) {
+    height: 35%;
+  }
 `;
 export const ForeCastContainer = styled.div`
   display: flex;

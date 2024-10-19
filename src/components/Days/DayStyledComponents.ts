@@ -88,15 +88,15 @@ export const ScrollArea = styled.div`
 export const WeatherForecastIcon = styled.img`
   width: 40px;
   height: 40px;
-    
+
   @media screen and (min-width: 300px) and (max-width: 445px) {
     width: 20px;
     height: 20px;
   }
-    @media screen and (min-width: 445px) and (max-width: 500px) {
-        width: 30px;
-        height: 30px;
-    }
+  @media screen and (min-width: 445px) and (max-width: 500px) {
+    width: 30px;
+    height: 30px;
+  }
 `;
 export const ForecastItemContainer = styled.div`
   display: flex;
