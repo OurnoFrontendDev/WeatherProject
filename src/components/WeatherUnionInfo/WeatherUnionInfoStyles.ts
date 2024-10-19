@@ -6,7 +6,6 @@ export const WeatherUnionContainer = styled.section`
   width: 100%;
   align-items: center;
   justify-content: center;
-  border: 1px solid red;
   padding: 20px 20px 0;
   max-height: 614px;
 
@@ -62,10 +61,11 @@ export const WeatherTownInfoContainer = styled.section`
     min-width: 100%;
     min-height: 304px;
   }
-  @media screen and (min-width: 300px) and (max-width: 499px) {
+  @media screen and (min-width: 445px) and (max-width: 500px) {
     gap: 2px;
     width: 100%;
     min-width: 100%;
+    min-height: 304px;
   }
 `;
 export const WeekForecastContainer = styled.section`
@@ -90,6 +90,9 @@ export const WeekForecastContainer = styled.section`
     width: 100%;
     height: 35%;
   }
+    @media screen and (min-width: 445px) and (max-width: 500px) {
+        height: 35%;
+    }
 `;
 export const ForeCastContainer = styled.div`
   display: flex;

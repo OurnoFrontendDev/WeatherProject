@@ -13,7 +13,7 @@ interface Environment {
 export default (env: Environment, argv: { mode: string }): Configuration => {
     const isDevelopment = argv.mode === 'development';
     const config: Configuration = {
-        entry: './src/index.tsx',
+        entry: './src/index.tsx',   
         output: {
             path: path.resolve(__dirname, 'dist'),
             filename: 'bundle.js'

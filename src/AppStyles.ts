@@ -64,4 +64,7 @@ export const AppWrapper = styled.main`
     width: 100vw;
     justify-content: flex-start;
   }
+  @media screen and (width: 853px) and (height: 1280px) {
+    justify-content: flex-start;
+  }
 `;

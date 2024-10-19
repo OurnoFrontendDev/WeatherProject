@@ -6,7 +6,6 @@ export const CityTempThemeSwitchContainer = styled.section`
   width: 100%;
   padding: 0 25px;
   height: 37px;
-  border: 1px solid darkblue;
 
   @media screen and (min-width: 1000px) and (max-width: 1300px) {
     padding-left: 25px;

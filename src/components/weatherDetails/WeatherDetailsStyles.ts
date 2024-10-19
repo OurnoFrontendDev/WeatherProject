@@ -170,6 +170,10 @@ export const WeatherDetailsValueItem = styled.div`
   @media screen and (min-width: 300px) and (max-width: 669px) {
     flex-direction: column;
   }
+
+    @media screen and (min-width: 445px) and (max-width: 500px) {
+        flex-direction: row;
+    }
 `;
 
 export const CardValue = styled.span`
@@ -246,7 +250,7 @@ export const CardValue = styled.span`
     min-height: 31px;
     white-space: break-spaces;
   }
-  @media screen and (min-width: 300px) and (max-width: 445px) {
+  @media screen and (min-width: 300px) and (max-width: 450px) {
     font-size: 9px;
     align-items: center;
     justify-content: center;

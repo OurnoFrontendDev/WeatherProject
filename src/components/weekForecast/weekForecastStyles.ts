@@ -8,10 +8,6 @@ export const WeekForecastWrapper = styled.section`
   width: 100%;
   height: 100%;
   border-radius: 18px;
-
-  @media screen and (min-width: 900px) and (max-width: 1000px) {
-    min-width: 311px;
-  }
 `;
 export const DaysForecastText = styled.div`
   font-family: ${fonts.Body_2};
@@ -185,6 +181,12 @@ export const WeekForecastCardDay = styled.div`
     padding-left: 8px;
     font-size: 12px;
   }
+  @media screen and (min-width: 320px) and (max-width: 320px) {
+    align-items: center;
+    justify-content: center;
+    padding-left: 8px;
+    font-size: 10px;
+  }
 `;
 export const WeekForecastCardIconContainer = styled.div`
   display: flex;
@@ -210,18 +212,22 @@ export const ForecastIcon = styled.img`
     width: 30px;
     height: 30px;
   }
-  @media screen and (min-width: 401px) and (max-width: 499px) {
-    width: 30px;
-    height: 30px;
+
+  @media screen and (min-width: 300px) and (max-width: 499px) {
+    width: 25px;
+    height: 25px;
   }
-  @media screen and (min-width: 300px) and (max-width: 400px) {
-    width: 30px;
-    height: 28px;
+    
+  @media screen and (min-width: 320px) and (max-width: 320px) {
+    width: 26px;
+    height: 26px;
   }
+    
   @media screen and (width: 360px) and (height: 740px) {
     width: 25px;
     height: 25px;
   }
+    
   @media screen and (width: 375px) and (height: 667px) {
     width: 25px;
     height: 25px;
@@ -248,12 +254,14 @@ export const WeekForecastCardTempContainer = styled.div`
         justify-content: center;
         padding-left: 0;
     }
+    
     @media screen and (width: 300px) and (height: 333px) {
         flex-direction: column;
         align-items: center;
         justify-content: center;
         padding-left: 0;
     }
+    
     @media screen and (width: 853px) and (height: 1280px) {
         flex-direction: column;
         align-items: center;
