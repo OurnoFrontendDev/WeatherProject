@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   ArrowButton,
   DateTimeStyle,
@@ -6,26 +6,23 @@ import {
   ForecastItemContainer,
   ForecastTextContainer,
   ForecastWrapper,
-  ScrollArea, ScrollAreaContainer,
+  ScrollArea,
+  ScrollAreaContainer,
   TempStyle,
-  WeatherForecastIcon,
 } from "./DayStyledComponents";
 import { Skeleton } from "../../skeleton/Skeleton";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { WeatherIcon } from "../weatherIcon";
 
 const visibleAreaWidth = 100;
 const scrollStep = 100;
 
 export const Days: React.FC = () => {
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
   const dailyForecasts = useTypedSelector((state) => state.weather.forecasts?.hourly || []);
+  const weather = useTypedSelector((state) => state.weather);
 
-  useEffect(() => {
-    if (dailyForecasts.length > 0) {
-      setIsLoading(false);
-    }
-  }, [dailyForecasts]);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const loading = weather.loading;
 
   const formatTime = (timestamp: number) => {
     const date = new Date(timestamp * 1000);
@@ -59,20 +56,15 @@ export const Days: React.FC = () => {
     }
   };
 
-  // const WeatherIcon: React.FC<{ iconCode: string }> = ({ iconCode }) => {
-  //   const iconUrl = `https://openweathermap.org/img/w/${iconCode}.png`;
-  //   return <WeatherForecastIcon src={iconUrl} alt="Weather Icon" />;
-  // };
-
   const weatherMappingData = filteredData.map((hour, index) => (
     <ForecastItemContainer key={index}>
       <DateTimeStyle>{formatTime(hour.dt)}</DateTimeStyle>
-      {/*<WeatherIcon iconCode={hour.weather[0].icon} />*/}
+      <WeatherIcon iconCode={hour.weather_code} context={"forecast"} />
       <TempStyle>{hour.temp ? `${Math.round(Number(hour.temp))}°` : "N/A"}</TempStyle>
     </ForecastItemContainer>
   ));
 
-  const skeletonItems = Array.from({ length: 7 }, (_, index) => (
+  const skeletonItems = Array.from({ length: 10 }, (_, index) => (
     <ForecastItemContainer key={index}>
       <Skeleton height={"20px"} width={"60px"} />
       <Skeleton height={"20px"} width={"60px"} />
@@ -94,11 +86,11 @@ export const Days: React.FC = () => {
         >
           ◀
         </ArrowButton>
-          <ScrollAreaContainer>
-            <ScrollArea style={{ transform: `translateX(-${scrollPosition}px)` }}>
-              {isLoading ? skeletonItems : weatherMappingData}
-            </ScrollArea>
-          </ScrollAreaContainer>
+        <ScrollAreaContainer>
+          <ScrollArea style={{ transform: `translateX(-${scrollPosition}px)` }}>
+            {loading ? skeletonItems : weatherMappingData}
+          </ScrollArea>
+        </ScrollAreaContainer>
         <ArrowButton
           direction="right"
           onClick={() => handleScroll("right")}

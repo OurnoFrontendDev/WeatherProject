@@ -1,29 +1,24 @@
 import { useEffect, useState } from "react";
 
 export const useGetIconSize = () => {
-  const [iconWeatherSize, setWeatherIconSize] = useState(30);
-  const [iconToggleThemSize, setIconToggleThemSize] = useState(15);
+  const [iconWeatherDetailsSize, setIconWeatherDetailsSize] = useState(30);
+  const [iconForecastSize, setIconToggleThemSize] = useState(40);
 
   useEffect(() => {
     const updateIconSize = () => {
       if (window.innerWidth <= 320) {
-        setWeatherIconSize(10);
-        setIconToggleThemSize(8);
+        setIconWeatherDetailsSize(10);
       } else if (window.innerWidth <= 384) {
-        setWeatherIconSize(15);
-        setIconToggleThemSize(10);
+        setIconWeatherDetailsSize(15);
       } else if (window.innerWidth <= 499) {
-        setWeatherIconSize(15);
-        setIconToggleThemSize(12);
-      } else if (window.innerWidth <= 570) {
-        setWeatherIconSize(15);
-      } else if (window.innerWidth <= 1375) {
-        setWeatherIconSize(20);
-      } else if (window.innerWidth <= 1600) {
-        setWeatherIconSize(30);
+        setIconWeatherDetailsSize(25);
+      } else if (window.innerWidth <= 1153) {
+        setIconWeatherDetailsSize(25);
+      } else if (window.innerWidth <= 1450) {
+        setIconWeatherDetailsSize(35);
+        setIconToggleThemSize(40);
       } else {
-        setWeatherIconSize(35);
-        setIconToggleThemSize(15);
+        setIconWeatherDetailsSize(40);
       }
     };
 
@@ -35,5 +30,5 @@ export const useGetIconSize = () => {
     };
   }, []);
 
-  return { iconWeatherSize, iconToggleThemSize };
+  return { iconWeatherDetailsSize, iconForecastSize };
 };

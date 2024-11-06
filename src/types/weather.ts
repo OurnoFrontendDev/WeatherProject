@@ -1,85 +1,88 @@
-export type Temperature = {
-  day: number;
-  min: number;
-  max: number;
-  night: number;
-  eve: number;
-  morn: number;
-};
+export enum TemperatureUnit {
+  celsius = "celsius",
+  fahrenheit = "fahrenheit",
+}
 
-export type Forecast = {
+export type hourlyType = {
   dt: number;
-  temp: Temperature;
-  feels_like: number;
-  pressure: number;
-  humidity: number;
-  dew_point: number;
-  uvi: number;
-  clouds: number;
-  visibility: number;
+  temp: number;
+  apparent_temp: number;
+  precipitation_probability: number;
   wind_speed: number;
-  wind_deg: number;
-  wind_gust: number;
-  weather: {
-    id: number;
-    main: string;
-    description: string;
-    icon: string;
-  }[];
+  weather_code: number;
+}[];
+export type dailyType = {
+  dt: number;
+  temp: {
+    min: number;
+    max: number;
+  };
+  sunrise:number
+  sunset:number
+  uv_index:number
+  precipitation_probability: number;
+  weather_code: number;
+}[];
+
+export type CityResult = {
+  admin1: string;
+  admin1_id: number;
+  country: string;
+  country_code: string;
+  country_id: number;
+  elevation: number;
+  feature_code: string;
+  id: number;
+  latitude: number;
+  longitude: number;
+  name: string;
+  population: number;
+  timezone: string;
 };
 
-// export type WeatherResponse = {
-//   coord?: {
-//     lon: number;
-//     lat: number;
-//   };
-//   weather?: {
-//     id: number;
-//     main: string;
-//     description: string;
-//     icon: string;
-//   }[];
-//   base?: string;
-//   main?: {
-//     temp: number;
-//     feels_like: number;
-//     temp_min: number;
-//     temp_max: number;
-//     pressure: number;
-//     humidity: number;
-//   };
-//   visibility?: number;
-//   wind?: {
-//     speed: number;
-//     deg: number;
-//   };
-//   clouds: {
-//     all: number;
-//   };
-//   dt: number;
-//   sys: {
-//     type: number;
-//     id: number;
-//     message: number;
-//     country: string;
-//     sunrise: number;
-//     sunset: number;
-//   };
-//   timezone: number;
-//   id: number;
-//   name: string;
-//   cod: number;
-//   hourly?: Forecast[];
-//   daily?: Forecast[];
-// };
-export type WeatherResponse = any;
+export type cityResponseType = {
+  results: CityResult[];
+};
+export type transformedDataType={
+
+}
+export interface WeatherResponseType {
+  timezone: string;
+  cityName: string;
+  cord: {
+    latitude: number;
+    longitude: number;
+  };
+  current: {
+    temp: number;
+    temperature_2m: number;
+    wind_speed_10m: number;
+    wind_direction_10m: number;
+    wind_speed: number;
+    wind_deg: number;
+  };
+  hourly:{
+    time: string[];
+    apparent_temperature: number[];
+    precipitation_probability: number[];
+    temperature_2m: number[];
+    wind_speed_10m: number[];
+    weather_code: number[];
+  };
+  daily: dailyType;
+}
+
 export type WeatherState = {
   loading: boolean;
   error: string | null;
-  currentWeather: WeatherResponse;
+  currentWeather: any;
   forecasts: {
-    hourly: Forecast[];
-    daily: Forecast[];
+    hourly: hourlyType[];
+    daily: dailyType[];
   };
-  unit: "metric" | "imperial";
+  unit: TemperatureUnit;
+  timezone: string;
+  cityName: string;
 };
+
+

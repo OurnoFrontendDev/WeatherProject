@@ -1,26 +1,44 @@
-import React, { FC } from "react";
-import classNames from "classnames";
+import React, { FC } from 'react';
+import classNames from 'classnames';
 
 type SvgProps = React.SVGProps<SVGSVGElement>;
 
 interface IconBaseProps extends SvgProps {
   className?: string;
-  Svg: React.VFC<React.SVGProps<SVGSVGElement>>;
+  src?: string;
+  Svg?: React.VFC<SvgProps>;
+  width?: number | string;
+  height?: number | string;
+  alt?: string;
+  borderRadius?: number | string;
 }
 
-interface IconClickableProps extends IconBaseProps {
-  Svg: React.VFC<React.SVGProps<SVGSVGElement>>;
-}
+export const IconLoader: FC<IconBaseProps> = (props) => {
+  const { className, Svg, src, width, height, alt, borderRadius } = props;
 
-export const IconLoader: FC<IconClickableProps> = (props) => {
-  const { className, Svg, width, height, ...otherProps } = props;
-  return (
-    <Svg
-      className={classNames(className)}
-      width={width}
-      height={height}
-      {...otherProps}
-      onClick={undefined}
-    />
-  );
+  if (src) {
+    return (
+      <img
+        className={classNames(className)}
+        src={src}
+        width={width}
+        height={height}
+        alt={alt}
+        style={{ borderRadius }}
+      />
+    );
+  }
+
+  if (Svg) {
+    return (
+      <Svg
+        className={classNames(className)}
+        width={width}
+        height={height}
+        style={{ borderRadius }}
+      />
+    );
+  }
+
+  return null;
 };

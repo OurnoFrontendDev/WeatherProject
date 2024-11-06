@@ -3,16 +3,15 @@ import { useDispatch } from "react-redux";
 import { setTemperatureUnit } from "../features/weatherSlice";
 import { HiddenInput, LabelText, SwitchLabel, ToggleThumb } from "./tempUnitSwitcherStyles";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { TemperatureUnit } from "../../types/weather";
 
 export const TempUnitSwitcher = () => {
   const dispatch = useDispatch();
 
   const unit = useTypedSelector((state) => state.weather.unit);
-
-  const isMetric = unit === "metric";
-
+  const isMetric = unit === TemperatureUnit.celsius;
   const handleChange = () => {
-    dispatch(setTemperatureUnit(isMetric ? "imperial" : "metric"));
+    dispatch(setTemperatureUnit(isMetric ? TemperatureUnit.fahrenheit : TemperatureUnit.celsius));
   };
 
   return (

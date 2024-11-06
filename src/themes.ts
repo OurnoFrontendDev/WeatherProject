@@ -12,7 +12,7 @@ export interface Theme {
 }
 
 export const lightTheme: Theme = {
-  "--app-background-color": "rgb(245, 245, 245)",
+  "--app-background-color": "rgb(245, 245, 245,0.5)",
   "--card-title-color": "rgb(33, 33, 33,0.32)",
   "--day-title-color": "rgb(18, 18, 18)",
   "--card-item-background-color": "rgba(255, 255, 255,0.8)",

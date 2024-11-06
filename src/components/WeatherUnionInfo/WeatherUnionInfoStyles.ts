@@ -7,7 +7,6 @@ export const WeatherUnionContainer = styled.section`
   align-items: center;
   justify-content: center;
   padding: 20px 20px 0;
-  max-height: 614px;
 
   @media screen and (min-width: 992px) and (max-width: 1300px) {
     align-items: normal;
@@ -22,81 +21,70 @@ export const WeatherUnionContainer = styled.section`
   @media screen and (min-width: 334px) and (max-width: 446px) {
     padding: 18px 0 0;
   }
-
 `;
 export const WeatherUnionInfoContainer = styled.section`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   height: 100%;
   width: 100%;
-  gap: 10%;
+  gap: 24px;
 
-  @media screen and (min-width: 800px) and (max-width: 1250px) {
-    gap: 15px;
-  }
-  @media screen and (min-width: 300px) and (max-width: 799px) {
-    gap: 7px;
-    justify-content: flex-start;
-    align-items: center;
+  @media screen and (min-width: 445px) and (max-width: 500px) {
     flex-direction: column;
+    gap: 10px;
+  }
+  @media screen and (max-width: 445px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
   }
 `;
 export const WeatherTownInfoContainer = styled.section`
   display: flex;
   flex-direction: column;
-  width: 60%;
+  justify-content: space-between;
+  max-width: 698px;
+  width: 10%;
   height: 100%;
   gap: 20px;
   flex: 1;
   @media screen and (width: 1024px) and (height: 600px) {
     gap: 0;
   }
-
-  @media screen and (min-width: 400px) and (max-width: 799px) {
-    gap: 5px;
+  @media screen and (max-width: 500px) {
     width: 100%;
-    min-width: 100%;
-    min-height: 304px;
+    gap: 0;
   }
-  @media screen and (min-width: 445px) and (max-width: 500px) {
-    gap: 2px;
+  @media screen and (max-width: 445px) {
     width: 100%;
-    min-width: 100%;
-    min-height: 304px;
+    gap: 0;
+    max-height: 445px;
   }
-  @media screen and (min-width: 320px) and (max-width: 400px) {
-    gap: 5px;
-    width: 100%;
-    min-width: 100%;
-    min-height: 304px;
-    justify-content: center;
-  }
+    
 `;
 export const WeekForecastContainer = styled.section`
   display: flex;
   width: 100%;
   border-radius: 17px;
   height: 100%;
+  min-width: 300px;
   max-width: 348px;
 
-  @media screen and (min-width: 800px) and (max-width: 1020px) {
-    max-width: 40%;
-    width: 40%;
+  @media screen and (min-width: 500px) and (max-width: 1062px) {
+    min-width: 0;
+    width: 50%;
   }
-  @media screen and (min-width: 300px) and (max-width: 799px) {
-    max-height: 313px;
-    max-width: 100%;
+  @media screen and (max-width: 500px) {
     width: 100%;
+    max-width: 100%;
   }
+
   @media screen and (min-width: 300px) and (max-width: 445px) {
     max-height: 313px;
     max-width: 100%;
     width: 100%;
-    height: 35%;
-  }
-  @media screen and (min-width: 445px) and (max-width: 500px) {
-    height: 35%;
+    height: 100%;
   }
 `;
 export const ForeCastContainer = styled.div`
@@ -107,25 +95,7 @@ export const ForeCastContainer = styled.div`
   gap: 24px;
   max-height: 395px;
 
-  @media screen and (min-width: 500px) and (max-width: 799px) {
-    width: 100%;
-    flex-direction: row;
-    gap: 5px;
-    min-height: 150px;
-  }
-  @media screen and (min-width: 320px) and (max-width: 500px) {
-    width: 100%;
-    flex-direction: row;
-    gap: 5px;
-  }
-  @media screen and (min-width: 401px) and (max-width: 499px) {
-    width: 100%;
-    flex-direction: column;
-    gap: 7px;
-  }
-  @media screen and (min-width: 300px) and (max-width: 401px) {
-    width: 100%;
-    flex-direction: column;
-    gap: 7px;
+  @media screen and (max-width: 500px) {
+    gap: 10px;
   }
 `;

@@ -7,6 +7,8 @@ export const WeatherDetailsContainer = styled.section`
   width: 100%;
   height: 100%;
   border-radius: 20px;
+  max-height: 185px;
+  padding: 5px;
   border: 1px solid #e8eaf6;
   background-color: ${({ theme }) => theme["--card-main-background-color"]};
 
@@ -18,7 +20,7 @@ export const WeatherDetailsContainer = styled.section`
 export const WeatherDetailsTextContainer = styled.div`
   display: flex;
   width: 100%;
-  padding: 15px;
+  padding: 5px 8px;
 
   @media screen and (min-width: 300px) and (max-width: 799px) {
     padding: 3px 0 3px 10px;
@@ -49,33 +51,10 @@ export const WeatherDetailsText = styled.div`
         justify-content: flex-start;
         width: 100%;
     }
-    @media screen and (min-width: 500px) and (max-width: 606px) {
-        font-size: 10px;
-        padding-top: 5px;
-    }
 
     @media screen and (width: 768px) and (height: 1024px) {
         padding: 0;
     }
-
-    @media screen and (min-width: 400px) and (max-width: 499px) {
-        display: flex;
-        justify-content: flex-start;
-        padding: 0;
-        padding-left: 10px;
-        width: 100%;
-        font-size: 13px;
-    }
-    @media screen and (min-width: 300px) and (max-width: 399px) {
-        display: flex;
-        justify-content: flex-start;
-        padding: 0;
-        padding-left: 10px;
-        width: 100%;
-        font-size: 13px;
-    }
-
-
 `;
 export const WeatherDetailsCardContainer = styled.div`
   display: flex;
@@ -96,10 +75,6 @@ export const WeatherDetailsCardInfo = styled.div`
   border: 1px solid #eee;
   background-color: ${({ theme }) => theme["--card-item-background-color"]};
 
-  @media screen and (min-width: 400px) and (max-width: 499px) {
-    align-items: center;
-  }
-
   @media screen and (min-width: 600px) and (max-width: 799px) {
     flex-direction: column;
     justify-content: center;
@@ -112,6 +87,7 @@ export const WeatherDetailsCardInfo = styled.div`
     align-items: center;
   }
 `;
+
 export const CardLabel = styled.div`
   display: flex;
   font-size: 14px;
@@ -137,13 +113,31 @@ export const CardLabel = styled.div`
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
   }
-  @media screen and (min-width: 300px) and (max-width: 535px) {
+  @media screen and (min-width: 500px) and (max-width: 535px) {
     font-size: 10px;
     text-align: center;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
+  }
+  @media screen and (max-width: 500px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 414px) {
+    font-size: 13px;
+  }
+  @media screen and (max-width: 392px) {
+    font-size: 12px;
+  }
+  @media screen and (max-width: 368px) {
+    font-size: 11px;
+  }
+  @media screen and (max-width: 368px) {
+    font-size: 10px;
+  }
+  @media screen and (max-width: 321px) {
+    font-size: 9px;
   }
 
   @media screen and (width: 1024px) and (height: 600px) {
@@ -168,6 +162,10 @@ export const WeatherDetailsValueItem = styled.div`
   width: 100%;
   height: 100%;
 
+  @media screen and (max-width: 1132px) {
+    flex-direction: column;
+  }
+
   @media screen and (min-width: 500px) and (max-width: 669px) {
     flex-direction: column;
   }
@@ -187,11 +185,9 @@ export const CardValue = styled.span`
   width: 100%;
   height: 100%;
   white-space: nowrap;
+  word-break: normal;
   color: ${({ theme }) => theme["--indicator-color"]};
 
-  @media screen and (min-width: 1475px) and (max-width: 1600px) {
-    font-size: 20px;
-  }
   @media screen and (min-width: 1414px) and (max-width: 1474px) {
     font-size: 20px;
   }
@@ -216,12 +212,12 @@ export const CardValue = styled.span`
   }
   @media screen and (min-width: 1142px) and (max-width: 1210px) {
     font-size: 12px;
-    padding-left: 20%;
-    white-space: break-spaces;
+    padding: 0;
   }
   @media screen and (min-width: 1000px) and (max-width: 1142px) {
     font-size: 11px;
-    padding-left: 20%;
+    padding: 0;
+    justify-content: center;
     white-space: break-spaces;
   }
   @media screen and (min-width: 600px) and (max-width: 1020px) {
@@ -240,22 +236,16 @@ export const CardValue = styled.span`
     white-space: break-spaces;
   }
   @media screen and (min-width: 500px) and (max-width: 535px) {
-    font-size: 8px;
-    justify-content: center;
-    white-space: break-spaces;
-  }
-  @media screen and (min-width: 450px) and (max-width: 499px) {
     font-size: 10px;
-    align-items: center;
     justify-content: center;
-    min-height: 31px;
     white-space: break-spaces;
   }
-  @media screen and (min-width: 300px) and (max-width: 450px) {
-    font-size: 9px;
-    align-items: center;
+  @media screen and (max-width: 500px) {
+    font-size: 20px;
     justify-content: center;
-    min-height: 20px;
-    white-space: break-spaces;
+  }
+  @media screen and (max-width: 459px) {
+    font-size: 15px;
+    justify-content: center;
   }
 `;

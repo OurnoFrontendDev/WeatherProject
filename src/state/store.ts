@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
 import { WeatherReducer } from "../components/features/weatherSlice";
-import { watchFetchWeather } from "../components/features/weatherSaga";
+import { watchFetchWeather, watchTemperatureUnitChange } from "../components/features/weatherSaga";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -18,6 +18,7 @@ const store = configureStore({
 });
 
 sagaMiddleware.run(watchFetchWeather);
+sagaMiddleware.run(watchTemperatureUnitChange);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

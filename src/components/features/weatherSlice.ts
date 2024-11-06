@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {
-  FetchWeatherRequestPayload,
-  TemperatureUnit, WeatherResponseType, WeatherState,
+import { TemperatureUnit, WeatherResponseType, WeatherState,
 } from "../../types/weather";
 
 export const initialState:WeatherState = {
@@ -21,7 +19,7 @@ const weatherSlice = createSlice({
   name: "weather",
   initialState,
   reducers: {
-    fetchWeatherBySearchRequest: (state, action: PayloadAction<FetchWeatherRequestPayload>) => {
+    fetchWeatherBySearchRequest: (state, action: PayloadAction) => {
       state.loading = true;
       state.error = "";
     },
