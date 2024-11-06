@@ -26,7 +26,7 @@ export const ForecastWrapper = styled.section`
 export const ForecastContainer = styled.div`
   display: flex;
   overflow-x: hidden;
-  padding: 10px;
+  padding: 10px 23px;
   border-radius: 8px;
   position: relative;
   margin-top: 6px;
@@ -78,11 +78,13 @@ export const ForecastTextContainer = styled.div`
   @media screen and (min-width: 300px) and (max-width: 499px) {
     font-size: 13px;
     padding-left: 10px;
+    padding-bottom: 10px;
   }
 `;
 
 export const ScrollArea = styled.div`
   display: flex;
+  width: 100%;
   transition: transform 0.3s ease;
 `;
 export const WeatherForecastIcon = styled.img`
@@ -106,7 +108,7 @@ export const ForecastItemContainer = styled.div`
   margin-left: 10px;
   border-radius: 8px;
   width: 95px;
-  height: 108px;
+  height: 106px;
   max-width: 95px;
   max-height: 108px;
   background-color: ${({ theme }) => theme["--card-item-background-color"]};
@@ -136,10 +138,12 @@ export const ArrowButton = styled.button<{ direction: string }>`
   top: 50%;
   transform: translateY(-50%);
   background: ${({ theme }) => theme["--card-item-background-color"]};
-  border: none;
+  //border: none;
+  color: gray;
   font-size: 24px;
   cursor: pointer;
   z-index: 1;
+  border: 1px solid red;
 
   ${({ direction }) => (direction === "left" ? "left: 0;" : "right: 0;")}
   &:hover {
@@ -151,4 +155,12 @@ export const TempStyle = styled.div`
 `;
 export const DateTimeStyle = styled.div`
   color: ${({ theme }) => theme["--card-title-color"]};
+`;
+
+export const ScrollAreaContainer = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border: 1px solid red;
+  min-height: 108px;
 `;

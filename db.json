@@ -11,6 +11,17 @@
       "id": 1,
       "body": "some comment",
       "postId": 1
+    },
+    {
+      "content": "123",
+      "parentId": null,
+      "userId": 1,
+      "avatar": "/icons/avatar1.jpg",
+      "username": "John Doe",
+      "createdAt": "2024-10-25T20:31:56.210Z",
+      "like": 0,
+      "dislike": 0,
+      "id": 2
     }
   ],
   "profile": {

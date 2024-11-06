@@ -168,11 +168,11 @@ export const WeatherDetailsValueItem = styled.div`
   width: 100%;
   height: 100%;
 
-  @media screen and (min-width: 300px) and (max-width: 669px) {
+  @media screen and (min-width: 500px) and (max-width: 669px) {
     flex-direction: column;
   }
 
-  @media screen and (min-width: 445px) and (max-width: 500px) {
+  @media screen and (min-width: 300px) and (max-width: 500px) {
     flex-direction: row;
   }
 `;

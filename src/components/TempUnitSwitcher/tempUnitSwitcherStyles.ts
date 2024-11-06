@@ -10,12 +10,12 @@ export const SwitchLabel = styled.label`
   border: 2px solid transparent;
   background-color: #e0e7ff;
 
-  @media screen and (max-width: 499px) {
-    width: 52px;
-  }
-  @media screen and (min-width: 300px) and (max-width: 399px) {
-    width: 35px;
-  }
+  //@media screen and (max-width: 499px) {
+  //  width: 52px;
+  //}
+  //@media screen and (min-width: 300px) and (max-width: 399px) {
+  //  width: 35px;
+  //}
 `;
 
 export const HiddenInput = styled.input`
@@ -41,11 +41,11 @@ export const ToggleThumb = styled.div<{ checked: boolean }>`
   transform: translateY(-50%);
   transition: left 0.2s ease-in-out;
 
-  @media screen and (min-width: 300px) and (max-width: 399px) {
-    height: 12px;
-    width: 12px;
-    left: ${(props) => (props.checked ? "calc(100% - 10px - 2px)" : "6px")};
-  }
+  // @media screen and (min-width: 300px) and (max-width: 399px) {
+  //   height: 12px;
+  //   width: 12px;
+  //   left: ${(props) => (props.checked ? "calc(100% - 10px - 2px)" : "6px")};
+  // }
 `;
 
 export interface LabelTextProps {
@@ -62,9 +62,9 @@ export const LabelText = styled.span<LabelTextProps>`
   ${(props) => props.$position === "left" && `left: 6.5px;`}
   ${(props) => props.$position === "right" && `right: 7px;`} 
   
-  @media screen and ( max-width: 499px) {
-    ${(props) => props.$position === "left" && `left: 6.5px;`}
-    ${(props) => props.$position === "right" && `right: 2px;`}
-    font-size: 10px;
-  }
+  // @media screen and ( max-width: 499px) {
+  //   ${(props) => props.$position === "left" && `left: 6.5px;`}
+  //   ${(props) => props.$position === "right" && `right: 2px;`}
+  //   font-size: 10px;
+  // }
 `;

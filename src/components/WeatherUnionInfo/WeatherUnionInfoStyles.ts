@@ -22,9 +22,7 @@ export const WeatherUnionContainer = styled.section`
   @media screen and (min-width: 334px) and (max-width: 446px) {
     padding: 18px 0 0;
   }
-  @media screen and (min-width: 320px) and (max-width: 333px) {
-    padding: 10px 0 0;
-  }
+
 `;
 export const WeatherUnionInfoContainer = styled.section`
   display: flex;
@@ -38,7 +36,7 @@ export const WeatherUnionInfoContainer = styled.section`
     gap: 15px;
   }
   @media screen and (min-width: 300px) and (max-width: 799px) {
-    gap: 5px;
+    gap: 7px;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
@@ -55,7 +53,7 @@ export const WeatherTownInfoContainer = styled.section`
     gap: 0;
   }
 
-  @media screen and (min-width: 320px) and (max-width: 799px) {
+  @media screen and (min-width: 400px) and (max-width: 799px) {
     gap: 5px;
     width: 100%;
     min-width: 100%;
@@ -66,6 +64,13 @@ export const WeatherTownInfoContainer = styled.section`
     width: 100%;
     min-width: 100%;
     min-height: 304px;
+  }
+  @media screen and (min-width: 320px) and (max-width: 400px) {
+    gap: 5px;
+    width: 100%;
+    min-width: 100%;
+    min-height: 304px;
+    justify-content: center;
   }
 `;
 export const WeekForecastContainer = styled.section`
@@ -113,9 +118,14 @@ export const ForeCastContainer = styled.div`
     flex-direction: row;
     gap: 5px;
   }
-  @media screen and (min-width: 300px) and (max-width: 499px) {
+  @media screen and (min-width: 401px) and (max-width: 499px) {
     width: 100%;
     flex-direction: column;
-    gap: 5px;
+    gap: 7px;
+  }
+  @media screen and (min-width: 300px) and (max-width: 401px) {
+    width: 100%;
+    flex-direction: column;
+    gap: 7px;
   }
 `;

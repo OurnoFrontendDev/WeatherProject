@@ -1,41 +1,45 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { WeatherResponse, WeatherState } from "../../types/weather";
+import {
+  FetchWeatherRequestPayload,
+  TemperatureUnit, WeatherResponseType, WeatherState,
+} from "../../types/weather";
 
-export const initialState: WeatherState = {
+export const initialState:WeatherState = {
   loading: false,
-  error: null,
+  error: "",
   currentWeather: null,
   forecasts: {
     hourly: [],
     daily: [],
   },
-  unit: "metric",
+  unit: TemperatureUnit.celsius,
+  timezone: "",
+  cityName: "Moscow",
 };
 
 const weatherSlice = createSlice({
   name: "weather",
   initialState,
   reducers: {
-    fetchWeatherBySearchRequest: (
-      state,
-      action: PayloadAction<{ location: string; weatherUnit: "metric" | "imperial" }>,
-    ) => {
+    fetchWeatherBySearchRequest: (state, action: PayloadAction<FetchWeatherRequestPayload>) => {
       state.loading = true;
-      state.error = null;
+      state.error = "";
     },
-    fetchWeatherBySearchSuccess: (state, action: PayloadAction<WeatherResponse>) => {
+    fetchWeatherBySearchSuccess: (state, action: PayloadAction<WeatherResponseType>) => {
       state.loading = false;
       state.currentWeather = action.payload;
       state.forecasts = {
-        hourly: action.payload.hourly || [],
-        daily: action.payload.daily || [],
+        hourly: action.payload.hourly,
+        daily: action.payload.daily ,
       };
+      state.timezone = action.payload.timezone;
+      state.cityName = action.payload.cityName;
     },
     fetchWeatherFailure: (state, action: PayloadAction<string>) => {
       state.loading = false;
       state.error = action.payload;
     },
-    setTemperatureUnit: (state, action: PayloadAction<"metric" | "imperial">) => {
+    setTemperatureUnit: (state, action: PayloadAction<TemperatureUnit>) => {
       state.unit = action.payload;
     },
   },

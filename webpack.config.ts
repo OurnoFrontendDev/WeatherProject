@@ -2,6 +2,7 @@ import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { Configuration } from 'webpack';
+import Dotenv from 'dotenv-webpack';
 
 import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -95,6 +96,9 @@ export default (env: Environment, argv: { mode: string }): Configuration => {
             }),
             new MiniCssExtractPlugin(),
             new CleanWebpackPlugin(),
+            new Dotenv({
+                path: './.env',
+            }),
         ]
     };
     if (isDevelopment) {

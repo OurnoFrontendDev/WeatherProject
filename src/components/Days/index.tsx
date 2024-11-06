@@ -6,7 +6,7 @@ import {
   ForecastItemContainer,
   ForecastTextContainer,
   ForecastWrapper,
-  ScrollArea,
+  ScrollArea, ScrollAreaContainer,
   TempStyle,
   WeatherForecastIcon,
 } from "./DayStyledComponents";
@@ -59,15 +59,15 @@ export const Days: React.FC = () => {
     }
   };
 
-  const WeatherIcon: React.FC<{ iconCode: string }> = ({ iconCode }) => {
-    const iconUrl = `https://openweathermap.org/img/w/${iconCode}.png`;
-    return <WeatherForecastIcon src={iconUrl} alt="Weather Icon" />;
-  };
+  // const WeatherIcon: React.FC<{ iconCode: string }> = ({ iconCode }) => {
+  //   const iconUrl = `https://openweathermap.org/img/w/${iconCode}.png`;
+  //   return <WeatherForecastIcon src={iconUrl} alt="Weather Icon" />;
+  // };
 
   const weatherMappingData = filteredData.map((hour, index) => (
     <ForecastItemContainer key={index}>
       <DateTimeStyle>{formatTime(hour.dt)}</DateTimeStyle>
-      <WeatherIcon iconCode={hour.weather[0].icon} />
+      {/*<WeatherIcon iconCode={hour.weather[0].icon} />*/}
       <TempStyle>{hour.temp ? `${Math.round(Number(hour.temp))}°` : "N/A"}</TempStyle>
     </ForecastItemContainer>
   ));
@@ -94,9 +94,11 @@ export const Days: React.FC = () => {
         >
           ◀
         </ArrowButton>
-        <ScrollArea style={{ transform: `translateX(-${scrollPosition}px)` }}>
-          {isLoading ? skeletonItems : weatherMappingData}
-        </ScrollArea>
+          <ScrollAreaContainer>
+            <ScrollArea style={{ transform: `translateX(-${scrollPosition}px)` }}>
+              {isLoading ? skeletonItems : weatherMappingData}
+            </ScrollArea>
+          </ScrollAreaContainer>
         <ArrowButton
           direction="right"
           onClick={() => handleScroll("right")}

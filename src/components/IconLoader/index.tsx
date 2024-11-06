@@ -12,7 +12,7 @@ interface IconClickableProps extends IconBaseProps {
   Svg: React.VFC<React.SVGProps<SVGSVGElement>>;
 }
 
-export const Icon: FC<IconClickableProps> = (props) => {
+export const IconLoader: FC<IconClickableProps> = (props) => {
   const { className, Svg, width, height, ...otherProps } = props;
   return (
     <Svg

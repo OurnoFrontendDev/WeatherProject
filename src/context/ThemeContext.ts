@@ -1,8 +1,9 @@
 import { createContext } from "react";
+import { ThemeEnum } from "../provider";
 
 export interface ThemeContextType {
-  theme: string;
-  changeTheme: (theme: string) => void;
+  theme: ThemeEnum;
+  changeTheme: (theme: ThemeEnum) => void;
 }
 
 export const ThemeContext = createContext<ThemeContextType | undefined>(undefined);

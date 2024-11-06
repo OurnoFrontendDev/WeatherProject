@@ -11,9 +11,6 @@ export const InputSearchBar = styled.input`
     @media screen and (min-width: 320px) and (max-width: 768px) {
       padding-left: 2px;
     }
-    @media screen and (min-width: 320px) and (max-width: 350px) {
-      font-size: 12px;
-    }
   }
 
   background-color: ${({ theme }) => theme["input-background-color"]};
@@ -32,7 +29,7 @@ export const InputSearchBar = styled.input`
     padding-left: 10px;
   }
 `;
-export const ULSearchList = styled.ul`
+export const SearchCitiesList = styled.ul`
   position: absolute;
   width: 100%;
   top: 100%;
@@ -46,4 +43,13 @@ export const ULSearchList = styled.ul`
   margin: 0;
   max-height: 200px;
   overflow-y: auto;
+`;
+
+export const SearchCitiesListTownItem = styled.li`
+    cursor: pointer;
+    padding: 10px;
+    
+    &:hover{
+        background-color: aqua;
+    }
 `;

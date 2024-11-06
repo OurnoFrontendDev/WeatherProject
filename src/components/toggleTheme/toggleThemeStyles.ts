@@ -9,13 +9,6 @@ export const SwitchLabelThemeToggle = styled.label`
   border-radius: 30px;
   border: 2px solid transparent;
   background-color: #e0e7ff;
-
-  @media screen and (max-width: 499px) {
-    width: 52px;
-  }
-  @media screen and (min-width: 300px) and (max-width: 399px) {
-    width: 47px;
-  }
 `;
 
 export const HiddenInputThemeToggle = styled.input`
@@ -40,12 +33,6 @@ export const ToggleThumbThemeToggle = styled.div<{ checked: boolean }>`
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   transform: translateY(-50%);
   transition: left 0.2s ease-in-out;
-
-  @media screen and (min-width: 300px) and (max-width: 499px) {
-    height: 14px;
-    width: 14px;
-    left: ${(props) => (props.checked ? "calc(100% - 18px - 2px)" : "6px")};
-  }
 `;
 
 export interface LabelImageThemeToggleProps {
@@ -60,6 +47,6 @@ export const LabelImageThemeToggle = styled.span<LabelImageThemeToggleProps>`
   transform: translateY(-50%);
   user-select: none;
   color: ${(props) => (props.$isActive ? "#ffffff" : "#1f2937")};
-  ${(props) => props.$position === "left" && `left: 6.5px;`}
+  ${(props) => props.$position === "left" && `left: 5.5px;`}
   ${(props) => props.$position === "right" && `right: 7px;`}
 `;

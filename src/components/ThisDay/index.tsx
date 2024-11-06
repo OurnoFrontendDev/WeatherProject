@@ -22,9 +22,11 @@ export const ThisDay = () => {
   const loading = weather.loading;
 
   useEffect(() => {
-    dispatch(fetchWeatherBySearchRequest({ location: "Moscow", weatherUnit: unit }));
-  }, [dispatch, unit]);
-
+    dispatch(fetchWeatherBySearchRequest({
+      location: { latitude: 55.7558, longitude: 37.6173 },
+      weatherUnit: unit
+    }));
+  }, [dispatch]);
   if (!weather.currentWeather || loading) {
     return (
       <LocationTemperatureContainer>
@@ -39,17 +41,22 @@ export const ThisDay = () => {
       </LocationTemperatureContainer>
     );
   }
+  const todayWeather = weather.currentWeather.daily[0];
+  const resultTempMax = Math.floor(todayWeather.temp.max);
+  const resultTempMin = Math.floor(todayWeather.temp.min);
 
-  const { temp_max, temp_min } = weather.currentWeather.main;
-  const resultTempMax = Math.floor(temp_max);
-  const resultTempMin = Math.floor(temp_min);
   const today = new Date();
   const formattedDate = format(today, "d MMM, EEEE");
+  // const { temp_max, temp_min } = weather.currentWeather.main;
+  // const resultTempMax = Math.floor(temp_max);
+  // const resultTempMin = Math.floor(temp_min);
+  // const today = new Date();
+  // const formattedDate = format(today, "d MMM, EEEE");
 
-  function WeatherIcon() {
-    const iconUrl = `https://openweathermap.org/img/w/${weather.currentWeather.weather[0].icon}.png`;
-    return <TemperatureIcon src={iconUrl} alt="Weather Icon" />;
-  }
+  // function WeatherIcon() {
+  //   const iconUrl = `https://openweathermap.org/img/w/${weather.currentWeather.weather[0].icon}.png`;
+  //   return <TemperatureIcon src={iconUrl} alt="Weather Icon" />;
+  // }
 
   return (
     <LocationTemperatureContainer>
@@ -61,7 +68,7 @@ export const ThisDay = () => {
         </Temperature>
       </LocationDescriptionContainer>
       <TemperatureIconContainer>
-        <WeatherIcon />
+        {/*<WeatherIcon />*/}
       </TemperatureIconContainer>
     </LocationTemperatureContainer>
   );

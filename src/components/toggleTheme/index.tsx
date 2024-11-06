@@ -1,36 +1,50 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import DarkModeIcon from "../../icons/DarkModeIcon.svg";
 import LightModeIcon from "../../icons/LightModeIcon.svg";
 import { useTheme } from "../../hooks/useTheme";
-import { Icon } from "../svg/SvgLoader";
+import { IconLoader } from "../IconLoader";
 import {
   HiddenInputThemeToggle,
   LabelImageThemeToggle,
   SwitchLabelThemeToggle,
   ToggleThumbThemeToggle,
 } from "./toggleThemeStyles";
-import { useGetIconSize } from "../../hooks/useGetIconSize";
+import { ThemeEnum } from "../../provider";
+
+const getThemeFromLocalStorage = () => {
+  return localStorage.getItem("theme") || ThemeEnum.lightTheme;
+};
+
+const setThemeToLocalStorage = (theme: ThemeEnum) => {
+  localStorage.setItem("theme", theme);
+};
 
 export const ToggleSwitchTheme = () => {
-  const { theme, changeTheme } = useTheme();
+  const [theme, setTheme] = useState(getThemeFromLocalStorage());
+  const { changeTheme } = useTheme();
 
-  const isLight = theme === "lightTheme";
+  useEffect(() => {
+    setTheme(getThemeFromLocalStorage());
+  }, []);
+
+  const isLight = theme === ThemeEnum.lightTheme;
 
   const toggleTheme = () => {
-    changeTheme(isLight ? "darkTheme" : "lightTheme");
+    const newTheme = theme === ThemeEnum.lightTheme ? ThemeEnum.darkTheme : ThemeEnum.lightTheme;
+    changeTheme(newTheme);
+    setTheme(newTheme);
+    setThemeToLocalStorage(newTheme);
   };
-
-  const { iconToggleThemSize } = useGetIconSize();
 
   return (
     <SwitchLabelThemeToggle>
       <HiddenInputThemeToggle type="checkbox" onChange={toggleTheme} checked={!isLight} />
       <ToggleThumbThemeToggle checked={!isLight} />
       <LabelImageThemeToggle $position="left" $isActive={isLight}>
-        <Icon Svg={LightModeIcon} width={iconToggleThemSize} height={iconToggleThemSize}></Icon>
+        <IconLoader Svg={LightModeIcon} width={20} height={20}></IconLoader>
       </LabelImageThemeToggle>
       <LabelImageThemeToggle $position="right" $isActive={!isLight}>
-        <Icon Svg={DarkModeIcon} width={iconToggleThemSize} height={iconToggleThemSize}></Icon>
+        <IconLoader Svg={DarkModeIcon} width={20} height={20}></IconLoader>
       </LabelImageThemeToggle>
     </SwitchLabelThemeToggle>
   );

@@ -23,7 +23,6 @@ export const lightTheme: Theme = {
   "--arrow-color": "rgba(255, 255, 255, 0)",
   "input-background-color": "rgba(232, 234, 246)",
 };
-
 export const darkTheme: Theme = {
   "--app-background-color": "rgb(13, 17, 23)",
   "--day-title-color": "rgb(245, 245, 245)",

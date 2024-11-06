@@ -4,7 +4,7 @@ import { fetchWeatherBySearchRequest } from "../features/weatherSlice";
 import { debounce } from "lodash";
 import axios from "axios";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
-import { InputSearchBar, ULSearchList } from "./SearchCityWeatherStyle";
+import { InputSearchBar, SearchCitiesList, SearchCitiesListTownItem } from "./SearchCityWeatherStyle";
 
 interface City {
   name: string;
@@ -20,7 +20,7 @@ export const SearchCityWeather = () => {
   const weather = useTypedSelector((state) => state.weather);
 
   const debouncedFetchCities = debounce(async (query: string) => {
-    if (query.trim() !== "") {
+    if (query.trim()) {
       try {
         const response = await axios.get("https://autocomplete.travelpayouts.com/places2", {
           params: {
@@ -56,8 +56,8 @@ export const SearchCityWeather = () => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && city.trim() !== "") {
-      if (suggestions.length > 0) {
+    if (e.key === "Enter" && city.trim()) {
+      if (suggestions.length) {
         handleSelectCity(suggestions[0]);
       } else {
         dispatch(fetchWeatherBySearchRequest({ location: city, weatherUnit: weather.unit }));
@@ -76,20 +76,15 @@ export const SearchCityWeather = () => {
         placeholder="Enter city name"
       />
       {showSuggestions && suggestions.length > 0 && (
-        <ULSearchList>
+        <SearchCitiesList>
           {suggestions.map((suggestion: City, index: number) => (
-            <li
+            <SearchCitiesListTownItem
               key={index}
-              onClick={() => handleSelectCity(suggestion)}
-              style={{
-                padding: "10px",
-                cursor: "pointer",
-              }}
-            >
+              onClick={() => handleSelectCity(suggestion)}>
               {suggestion.name}, {suggestion.country_name}
-            </li>
+            </SearchCitiesListTownItem>
           ))}
-        </ULSearchList>
+        </SearchCitiesList>
       )}
     </>
   );
