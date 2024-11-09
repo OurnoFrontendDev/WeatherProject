@@ -15,13 +15,16 @@ export const ForecastWrapper = styled.section`
   @media screen and (width: 1024px) and (height: 600px) {
     max-height: 139px;
   }
+    
   @media screen and (max-width: 500px) {
     height: 40%;
     padding-bottom: 5px;
     padding-top: 5px;
     min-height: 154px;
   }
+    
 `;
+
 export const ForecastContainer = styled.div`
   display: flex;
   overflow-x: hidden;
@@ -101,9 +104,11 @@ export const ArrowButton = styled.button<{ direction: string }>`
     opacity: 0.7;
   }
 `;
+
 export const TempStyle = styled.div`
   color: ${({ theme }) => theme["--temp-indicator-color"]};
 `;
+
 export const DateTimeStyle = styled.div`
   text-align: center;
   color: ${({ theme }) => theme["--card-title-color"]};

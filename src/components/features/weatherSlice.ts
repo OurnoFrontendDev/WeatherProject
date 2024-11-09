@@ -33,13 +33,14 @@ const weatherSlice = createSlice({
       state.timezone = action.payload.timezone;
       state.cityName = action.payload.cityName;
     },
+
     fetchWeatherFailure: (state, action: PayloadAction<string>) => {
       state.loading = false;
       state.error = action.payload;
     },
     setTemperatureUnit: (state, action: PayloadAction<TemperatureUnit>) => {
       state.unit = action.payload;
-    },
+    }
   },
 });
 

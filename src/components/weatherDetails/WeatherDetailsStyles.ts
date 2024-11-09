@@ -7,7 +7,7 @@ export const WeatherDetailsContainer = styled.section`
   width: 100%;
   height: 100%;
   border-radius: 20px;
-  max-height: 185px;
+  max-height: 250px;
   padding: 5px;
   border: 1px solid #e8eaf6;
   background-color: ${({ theme }) => theme["--card-main-background-color"]};
@@ -21,22 +21,13 @@ export const WeatherDetailsTextContainer = styled.div`
   display: flex;
   width: 100%;
   padding: 5px 8px;
-
-  @media screen and (min-width: 300px) and (max-width: 799px) {
-    padding: 3px 0 3px 10px;
-  }
-
-  @media screen and (min-width: 400px) and (max-width: 499px) {
-    height: 20%;
-  }
-  @media screen and (min-width: 500px) and (max-width: 669px) {
-    height: 20px;
-  }
 `;
 export const IconContainer = styled.span`
   display: flex;
   align-items: center;
   padding-left: 5px;
+    color:${({ theme }) => theme["--icon-color"]};  
+    
 `;
 export const WeatherDetailsText = styled.div`
     display: flex;
@@ -63,7 +54,12 @@ export const WeatherDetailsCardContainer = styled.div`
   flex-wrap: wrap;
   width: 100%;
   height: 100%;
-  gap: 3px;
+  gap: 10px;
+  padding-bottom: 15px;
+    @media screen and (min-width: 300px) and (max-width: 532px){
+        gap:5px;
+        padding-bottom: 8px;
+    }
 `;
 export const WeatherDetailsCardInfo = styled.div`
   display: flex;
@@ -86,6 +82,10 @@ export const WeatherDetailsCardInfo = styled.div`
     justify-content: center;
     align-items: center;
   }
+
+    @media screen and (max-width: 500px) {
+    min-height:58px ;
+    }
 `;
 
 export const CardLabel = styled.div`
@@ -113,17 +113,15 @@ export const CardLabel = styled.div`
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
   }
-  @media screen and (min-width: 500px) and (max-width: 535px) {
-    font-size: 10px;
+  @media screen and (min-width: 414px) and (max-width: 535px) {
+    font-size: 14px;
     text-align: center;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
   }
-  @media screen and (max-width: 500px) {
-    font-size: 14px;
-  }
+  
   @media screen and (max-width: 414px) {
     font-size: 13px;
   }
@@ -245,7 +243,7 @@ export const CardValue = styled.span`
     justify-content: center;
   }
   @media screen and (max-width: 459px) {
-    font-size: 15px;
+    font-size: 13px;
     justify-content: center;
   }
 `;

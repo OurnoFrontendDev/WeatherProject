@@ -12,6 +12,7 @@ export const CityTempThemeSwitchContainer = styled.section`
   @media screen and (min-width: 1000px) and (max-width: 1300px) {
     padding-left: 25px;
   }
+    
   @media screen and (min-width: 1000px) and (max-width: 1820px) {
     padding-right: 20px;
   }
@@ -24,10 +25,12 @@ export const CityTempThemeSwitchContainer = styled.section`
     padding-left: 30px;
     padding-right: 20px;
   }
+    
   @media screen and (min-width: 570px) and (max-width: 599px) {
     padding-left: 3px;
     padding-right: 20px;
   }
+    
   @media screen and (min-width: 300px) and (max-width: 570px) {
     padding-left: 3px;
     padding-right: 0;

@@ -9,11 +9,13 @@ export interface Theme {
   "--input-background-color": string;
   "--arrow-color": string;
   "input-background-color": string;
+  "--icon-color":string;
+  "--temp-indicator-color":string
 }
 
 export const lightTheme: Theme = {
-  "--app-background-color": "rgb(245, 245, 245,0.5)",
-  "--card-title-color": "rgb(33, 33, 33,0.32)",
+  "--app-background-color": "rgba(255, 255, 255,0.8)",
+  "--card-title-color": "rgb(18, 18, 18)",
   "--day-title-color": "rgb(18, 18, 18)",
   "--card-item-background-color": "rgba(255, 255, 255,0.8)",
   "--card-main-background-color": "rgba(232, 234, 246)",
@@ -22,7 +24,10 @@ export const lightTheme: Theme = {
   "--input-background-color": "rgba(255, 255, 255, 0)",
   "--arrow-color": "rgba(255, 255, 255, 0)",
   "input-background-color": "rgba(232, 234, 246)",
+  "--icon-color":"rgb(0, 0, 0)",
+  "--temp-indicator-color":"rgb(0, 0, 0)"
 };
+
 export const darkTheme: Theme = {
   "--app-background-color": "rgb(13, 17, 23)",
   "--day-title-color": "rgb(245, 245, 245)",
@@ -34,4 +39,6 @@ export const darkTheme: Theme = {
   "--input-background-color": "rgba(255, 255, 255, 0)",
   "--arrow-color": "rgb(245, 245, 245)",
   "input-background-color": "rgb(245, 245, 245)",
+  "--icon-color":"rgb(245, 245, 245)",
+  "--temp-indicator-color":"rgb(245, 245, 245)"
 };

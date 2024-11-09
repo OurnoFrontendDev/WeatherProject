@@ -7,11 +7,7 @@ import {
   setTemperatureUnit,
 } from "./weatherSlice";
 import { RootState } from "../../state/store";
-import {
-  cityResponseType,
-  TemperatureUnit,
-  WeatherResponseType,
-} from "../../types/weather";
+import { cityResponseType, TemperatureUnit, WeatherResponseType } from "../../types/weather";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const BASE_URL_SEARCH_TOWN = process.env.REACT_APP_SEARCH_TOWN_URL;
@@ -34,22 +30,29 @@ function* fetchWeatherData(action: ReturnType<typeof fetchWeatherBySearchRequest
     );
     const { latitude, longitude } = cityResponse.data.results[0];
 
-    const weatherResponse: AxiosResponse<WeatherResponseType> = yield call(axios.get, `${BASE_URL}`, {
-      params: {
-        latitude,
-        longitude,
-        current: "temperature_2m,weather_code,wind_speed_10m,wind_direction_10m",
-        hourly:
-          "temperature_2m,precipitation_probability,wind_speed_10m,apparent_temperature,weather_code",
-        daily:
-          "sunrise,sunset,precipitation_probability_max,uv_index_max,temperature_2m_max,temperature_2m_min,weather_code",
-        timezone: "auto",
-        temperature_unit: weatherUnit === "fahrenheit" ? "fahrenheit" : "celsius",
-        forecast_days: 7,
+    const weatherResponse: AxiosResponse<WeatherResponseType> = yield call(
+      axios.get,
+      `${BASE_URL}`,
+      {
+        params: {
+          latitude,
+          longitude,
+          current: "temperature_2m,weather_code,wind_speed_10m,wind_direction_10m",
+          hourly:
+            "temperature_2m,precipitation_probability,wind_speed_10m,apparent_temperature,weather_code",
+          daily:
+            "sunrise,sunset,precipitation_probability_max,uv_index_max,temperature_2m_max,temperature_2m_min,weather_code",
+          timezone: "auto",
+          temperature_unit:
+            weatherUnit === TemperatureUnit.fahrenheit
+              ? TemperatureUnit.fahrenheit
+              : TemperatureUnit.celsius,
+          forecast_days: 7,
+        },
       },
-    });
+    );
 
-    const transformedData  = {
+    const transformedData = {
       timezone: weatherResponse.data.timezone,
       cityName: name,
       cord: {
@@ -85,9 +88,6 @@ function* fetchWeatherData(action: ReturnType<typeof fetchWeatherBySearchRequest
         weather_code: weatherResponse.data.daily.weather_code[index],
       })),
     };
-    // console.log("transformedDat.CORD",transformedData);
-    console.log("transformedData.hourly",transformedData.hourly);
-    console.log("transformedData.current",transformedData.current);
     yield put(fetchWeatherBySearchSuccess(transformedData));
   } catch (error: any) {
     console.error("Error fetching weather data:", error);
@@ -100,17 +100,11 @@ export function* watchFetchWeather() {
 }
 
 function* handleTemperatureUnitChange() {
-  const location = yield select((state: RootState) => {
-    const { latitude, longitude } = state.weather.currentWeather?.cord || {};
-    return latitude && longitude ? { latitude: latitude, longitude: longitude } : null;
-  });
+  const { cityName, cord } = yield select((state: RootState) => state.weather.currentWeather || {});
+  const weatherUnit: TemperatureUnit = yield select((state: RootState) => state.weather.unit);
 
-  const weatherUnit: TemperatureUnit.celsius | TemperatureUnit.fahrenheit = yield select(
-    (state: RootState) => state.weather.unit,
-  );
-
-  if (location) {
-    yield put(fetchWeatherBySearchRequest({ location, weatherUnit }));
+  if (cord && cityName) {
+    yield put(fetchWeatherBySearchRequest({ name: cityName, weatherUnit }));
   } else {
     console.error("Location data not available for weather fetch");
   }

@@ -8,6 +8,10 @@ export const LocationTemperatureContainer = styled.section`
   justify-content: space-between;
   gap: 10px;
 
+    @media screen and (min-width: 900px) {
+       min-height: 154px;
+    }
+
   @media screen and (min-width: 500px) and (max-width: 585px) {
     flex-direction: column;
     justify-content: center;
@@ -52,28 +56,14 @@ export const TemperatureIconContainer = styled.div`
   display: flex;
   width: 181px;
   height: 100%;
-  //
+  
   @media screen and (max-width: 1162px) {
     display: flex;
     width: 150px;
     justify-content: center;
     align-items: center;
   }
-  //
-  //@media screen and (max-width: 1319px) {
-  //  width: 40%;
-  //}
-  //@media screen and (max-width: 1160px) {
-  //  width: 50%;
-  //}
-  //
-  //@media screen and (min-width: 400px) and (max-width: 650px) {
-  //  width: 40%;
-  //}
-  //
-  //@media screen and (min-width: 300px) and (max-width: 446px) {
-  //  width: 40%;
-  //}
+  
 `;
 
 export const InfoDate = styled.div`

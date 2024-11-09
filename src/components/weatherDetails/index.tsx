@@ -4,7 +4,7 @@ import SunriseIcon from "../../icons/sunrise-icon.svg";
 import WindIcon from "../../icons/wind-icon.svg";
 import FeelsLikeIcon from "../../icons/fluent_temperature-16-filled.svg";
 import WaterDropIcon from "../../icons/material-symbols_water-drop.svg";
-import UvIndexIcon from "../../icons/mingcute_sun-fill.svg";
+import UvIndexIcon from "../../icons/sun-icon.svg";
 import { IconLoader } from "../IconLoader";
 import { Skeleton } from "../../skeleton/Skeleton";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
@@ -23,7 +23,7 @@ import {
 } from "./WeatherDetailsStyles";
 
 export const WeatherDetails = () => {
-  const weatherData = useTypedSelector((state: any) => state.weather);
+  const weatherData = useTypedSelector((state) => state.weather);
   const loading = useTypedSelector((state) => state.weather.loading);
   const { iconWeatherDetailsSize } = useGetIconSize();
 
@@ -102,7 +102,7 @@ export const WeatherDetails = () => {
   return (
     <WeatherDetailsContainer>
       <WeatherDetailsTextContainer>
-        <WeatherDetailsText>Weather Details</WeatherDetailsText>
+        <WeatherDetailsText>weather details</WeatherDetailsText>
       </WeatherDetailsTextContainer>
       <WeatherDetailsCardContainer>
         {weatherDetails.map(({ id, label, value, icon }) => (
@@ -113,11 +113,11 @@ export const WeatherDetails = () => {
             <WeatherDetailsValueItem>
               <CardValue>{value}</CardValue>
               <IconContainer>
-                <IconLoader
+                {loading?<Skeleton/>:<IconLoader
                   Svg={icon}
                   height={iconWeatherDetailsSize}
                   width={iconWeatherDetailsSize}
-                />
+                />}
               </IconContainer>
             </WeatherDetailsValueItem>
           </WeatherDetailsCardInfo>

@@ -1,11 +1,10 @@
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchWeatherBySearchRequest } from "../features/weatherSlice";
-import { debounce } from "lodash";
 import axios from "axios";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { InputSearchBar, SearchCitiesList, SearchCitiesListTownItem } from "./SearchCityWeatherStyle";
+import { useDebounce } from "../../hooks/useDebounce";
 
 interface City {
   name: string;
@@ -18,6 +17,8 @@ export const SearchCityWeather = () => {
   const [city, setCity] = useState("");
   const [suggestions, setSuggestions] = useState<City[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+
+  const debouncedCity = useDebounce(city, 500);
 
   const dispatch = useDispatch();
   const weather = useTypedSelector((state) => state.weather);
@@ -52,20 +53,22 @@ export const SearchCityWeather = () => {
     }
   };
 
-  const debouncedFetchCities = debounce(async (query: string) => {
-    await fetchCitiesFromNewApi(query);
-  }, 300);
+  useEffect(() => {
+    if (debouncedCity) {
+      fetchCitiesFromNewApi(debouncedCity);
+    } else {
+      setSuggestions([]);
+      setShowSuggestions(false);
+    }
+  }, [debouncedCity]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = e.target.value;
-    setCity(inputValue);
-    debouncedFetchCities(inputValue);
+    setCity(e.target.value);
   };
 
   const handleSelectCity = (selectedCity: City) => {
     if (selectedCity) {
       setCity(selectedCity.name);
-      console.log("selectedCity.name", selectedCity.name);
       setShowSuggestions(false);
       dispatch(
         fetchWeatherBySearchRequest({
@@ -81,7 +84,6 @@ export const SearchCityWeather = () => {
       console.error("Selected city is null or undefined");
     }
   };
-
 
   const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && city.trim()) {
@@ -107,7 +109,7 @@ export const SearchCityWeather = () => {
                   longitude: selectedCity.longitude,
                 },
                 weatherUnit: weather.unit,
-                name:selectedCity.name,
+                name: selectedCity.name,
               }),
             );
             setShowSuggestions(false);

@@ -22,9 +22,6 @@ export const WeekForecast: React.FC = () => {
   const loading = useTypedSelector(selectLoading);
   const dailyForecasts = useTypedSelector(selectDailyForecasts);
 
-  console.log("dailyForecasts",dailyForecasts);
-
-
   const dailyForecastsGateData = dailyForecasts.slice(0, 7).map((forecast) => {
     const timestamp = forecast.dt * 1000;
     const dateObject = new Date(timestamp);
@@ -37,7 +34,6 @@ export const WeekForecast: React.FC = () => {
       weatherCode: forecast.weather_code,
     };
   });
-  console.log("dailyForecastsGateData",dailyForecastsGateData);
 
   return (
     <WeekForecastWrapper>
@@ -56,7 +52,11 @@ export const WeekForecast: React.FC = () => {
                   <WeekForecastCardDay>{forecast.formattedDate.split(", ")[1]}</WeekForecastCardDay>
                 </WeekForecastCardDatesContainer>
                 <WeekForecastCardIconContainer>
-                  <WeatherIcon iconCode={forecast.weatherCode} withDescription={true} context={"forecast"}/>
+                  <WeatherIcon
+                    iconCode={forecast.weatherCode}
+                    withDescription={true}
+                    context={"forecast"}
+                  />
                 </WeekForecastCardIconContainer>
                 <WeekForecastCardTempContainer>
                   <WeekForecastCardTemp>{forecast.tempMax}° /</WeekForecastCardTemp>

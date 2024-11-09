@@ -25,6 +25,7 @@ export const InputSearchBar = styled.input`
   @media screen and (min-width: 599px) and (max-width: 768px) {
     width: 100%;
   }
+    
   @media screen and (min-width: 320px) and (max-width: 599px) {
     padding-left: 10px;
   }

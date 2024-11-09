@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import classNames from 'classnames';
+import React, { FC } from "react";
+import classNames from "classnames";
 
 type SvgProps = React.SVGProps<SVGSVGElement>;
 
@@ -10,22 +10,14 @@ interface IconBaseProps extends SvgProps {
   width?: number | string;
   height?: number | string;
   alt?: string;
-  borderRadius?: number | string;
 }
 
 export const IconLoader: FC<IconBaseProps> = (props) => {
-  const { className, Svg, src, width, height, alt, borderRadius } = props;
+  const { className, Svg, src, width, height, alt } = props;
 
   if (src) {
     return (
-      <img
-        className={classNames(className)}
-        src={src}
-        width={width}
-        height={height}
-        alt={alt}
-        style={{ borderRadius }}
-      />
+      <img className={classNames(className)} src={src} width={width} height={height} alt={alt} />
     );
   }
 
@@ -35,7 +27,8 @@ export const IconLoader: FC<IconBaseProps> = (props) => {
         className={classNames(className)}
         width={width}
         height={height}
-        style={{ borderRadius }}
+        fill={"currentColor"}
+        stroke={"currentColor"}
       />
     );
   }
