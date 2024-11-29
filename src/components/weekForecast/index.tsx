@@ -1,5 +1,5 @@
-import React from "react";
-import { format } from "date-fns";
+import React from 'react';
+import { format } from 'date-fns';
 import {
   DaysForecastText,
   WeekForecastCardContent,
@@ -12,11 +12,11 @@ import {
   WeekForecastContentContainer,
   WeekForecastTextContainer,
   WeekForecastWrapper,
-} from "./weekForecastStyles";
-import { Skeleton } from "../../skeleton/Skeleton";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
-import { selectLoading, selectDailyForecasts } from "../../selectors/weatherSelectors";
-import { WeatherIcon } from "../weatherIcon";
+} from './weekForecast.styled';
+import { Skeleton } from '../../skeleton/Skeleton';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { selectLoading, selectDailyForecasts } from '../../selectors/weatherSelectors';
+import { WeatherIcon } from '../weatherIcon';
 
 export const WeekForecast: React.FC = () => {
   const loading = useTypedSelector(selectLoading);
@@ -25,7 +25,7 @@ export const WeekForecast: React.FC = () => {
   const dailyForecastsGateData = dailyForecasts.slice(0, 7).map((forecast) => {
     const timestamp = forecast.dt * 1000;
     const dateObject = new Date(timestamp);
-    const formattedDate = format(dateObject, "d MMM, EEEE");
+    const formattedDate = format(dateObject, 'd MMM, EEEE');
 
     return {
       formattedDate,
@@ -44,26 +44,26 @@ export const WeekForecast: React.FC = () => {
         {loading
           ? Array.from({ length: 7 }, (_, index) => <Skeleton key={index} />)
           : dailyForecastsGateData.map((forecast, index) => (
-              <WeekForecastCardContent key={index}>
-                <WeekForecastCardDatesContainer>
-                  <WeekForecastCardDate>
-                    {forecast.formattedDate.split(", ")[0]}
-                  </WeekForecastCardDate>
-                  <WeekForecastCardDay>{forecast.formattedDate.split(", ")[1]}</WeekForecastCardDay>
-                </WeekForecastCardDatesContainer>
-                <WeekForecastCardIconContainer>
-                  <WeatherIcon
-                    iconCode={forecast.weatherCode}
-                    withDescription={true}
-                    context={"forecast"}
-                  />
-                </WeekForecastCardIconContainer>
-                <WeekForecastCardTempContainer>
-                  <WeekForecastCardTemp>{forecast.tempMax}° /</WeekForecastCardTemp>
-                  <WeekForecastCardTemp>{forecast.tempMin}°</WeekForecastCardTemp>
-                </WeekForecastCardTempContainer>
-              </WeekForecastCardContent>
-            ))}
+            <WeekForecastCardContent key={index}>
+              <WeekForecastCardDatesContainer>
+                <WeekForecastCardDate>
+                  {forecast.formattedDate.split(', ')[0]}
+                </WeekForecastCardDate>
+                <WeekForecastCardDay>{forecast.formattedDate.split(', ')[1]}</WeekForecastCardDay>
+              </WeekForecastCardDatesContainer>
+              <WeekForecastCardIconContainer>
+                <WeatherIcon
+                  iconCode={forecast.weatherCode}
+                  withDescription={true}
+                  context={'forecast'}
+                />
+              </WeekForecastCardIconContainer>
+              <WeekForecastCardTempContainer>
+                <WeekForecastCardTemp>{forecast.tempMax}° /</WeekForecastCardTemp>
+                <WeekForecastCardTemp>{forecast.tempMin}°</WeekForecastCardTemp>
+              </WeekForecastCardTempContainer>
+            </WeekForecastCardContent>
+          ))}
       </WeekForecastContentContainer>
     </WeekForecastWrapper>
   );

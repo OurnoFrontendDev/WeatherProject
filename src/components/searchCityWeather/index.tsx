@@ -1,129 +1,78 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { fetchWeatherBySearchRequest } from "../features/weatherSlice";
-import axios from "axios";
+import {
+  fetchSuggestions,
+  fetchWeatherBySearch,
+} from "../features/weatherSlice";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
-import { InputSearchBar, SearchCitiesList, SearchCitiesListTownItem } from "./SearchCityWeatherStyle";
-import { useDebounce } from "../../hooks/useDebounce";
-
-interface City {
-  name: string;
-  country: string;
-  latitude: number;
-  longitude: number;
-}
+import {
+  SearchWeatherInput,
+  SearchCitiesList,
+  SearchCitiesListTownItem,
+} from "./searchCityWeather.styled";
+import { TownSearch } from "../../types/weather";
+import useDebouncedCallback from "../../hooks/useDebounceCallback";
 
 export const SearchCityWeather = () => {
-  const [city, setCity] = useState("");
-  const [suggestions, setSuggestions] = useState<City[]>([]);
-  const [showSuggestions, setShowSuggestions] = useState(false);
-
-  const debouncedCity = useDebounce(city, 500);
-
   const dispatch = useDispatch();
   const weather = useTypedSelector((state) => state.weather);
+  const suggestions = useTypedSelector((state) => state.weather.suggestions);
 
-  const fetchCitiesFromNewApi = async (query: string) => {
-    if (query.trim()) {
-      try {
-        const response = await axios.get("https://geocoding-api.open-meteo.com/v1/search", {
-          params: {
-            name: query,
-            count: 10,
-            language: "en",
-            format: "json",
-          },
-        });
-
-        if (response.data.results) {
-          setSuggestions(response.data.results);
-          setShowSuggestions(true);
-        } else {
-          setSuggestions([]);
-          setShowSuggestions(false);
-        }
-      } catch (error) {
-        console.error("Error fetching city suggestions:", error);
-        setSuggestions([]);
-        setShowSuggestions(false);
-      }
-    } else {
-      setSuggestions([]);
-      setShowSuggestions(false);
-    }
-  };
+  const [city, setCity] = useState("");
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   useEffect(() => {
-    if (debouncedCity) {
-      fetchCitiesFromNewApi(debouncedCity);
-    } else {
-      setSuggestions([]);
-      setShowSuggestions(false);
-    }
-  }, [debouncedCity]);
+    setShowSuggestions(suggestions.length > 0);
+  }, [suggestions]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCity(e.target.value);
-  };
+  const debouncedFetchSuggestions = useDebouncedCallback((value: string) => {
+    dispatch(fetchSuggestions(value));
+  }, 500);
 
-  const handleSelectCity = (selectedCity: City) => {
-    if (selectedCity) {
+  const handleSelectCity = (selectedCity: TownSearch) => {
+    if (
+      selectedCity.latitude !== undefined &&
+      selectedCity.longitude !== undefined
+    ) {
       setCity(selectedCity.name);
       setShowSuggestions(false);
       dispatch(
-        fetchWeatherBySearchRequest({
+        fetchWeatherBySearch({
+          name: selectedCity.name,
           location: {
             latitude: selectedCity.latitude,
             longitude: selectedCity.longitude,
           },
           weatherUnit: weather.unit,
-          name: selectedCity.name,
         }),
       );
+      setCity("")
     } else {
       console.error("Selected city is null or undefined");
     }
   };
 
-  const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && city.trim()) {
-      if (suggestions.length) {
-        handleSelectCity(suggestions[0]);
-      } else {
-        try {
-          const response = await axios.get("https://geocoding-api.open-meteo.com/v1/search", {
-            params: {
-              name: city,
-              count: 1,
-              language: "en",
-              format: "json",
-            },
-          });
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setCity(value);
+    debouncedFetchSuggestions(value);
+  };
 
-          if (response.data.results.length) {
-            const selectedCity = response.data.results[0];
-            dispatch(
-              fetchWeatherBySearchRequest({
-                location: {
-                  latitude: selectedCity.latitude,
-                  longitude: selectedCity.longitude,
-                },
-                weatherUnit: weather.unit,
-                name: selectedCity.name,
-              }),
-            );
-            setShowSuggestions(false);
-          }
-        } catch (error) {
-          console.error("Error fetching coordinates:", error);
-        }
-      }
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && city.trim()) {
+      dispatch(
+        fetchWeatherBySearch({
+          name: city,
+          weatherUnit: weather.unit,
+        }),
+      );
+      setShowSuggestions(false);
     }
   };
 
   return (
     <>
-      <InputSearchBar
+      <SearchWeatherInput
         type="text"
         value={city}
         onChange={handleInputChange}
@@ -132,8 +81,11 @@ export const SearchCityWeather = () => {
       />
       {showSuggestions && suggestions.length > 0 && (
         <SearchCitiesList>
-          {suggestions.map((suggestion: City, index: number) => (
-            <SearchCitiesListTownItem key={index} onClick={() => handleSelectCity(suggestion)}>
+          {suggestions.map((suggestion: TownSearch, index: number) => (
+            <SearchCitiesListTownItem
+              key={index}
+              onClick={() => handleSelectCity(suggestion)}
+            >
               {suggestion.name}, {suggestion.country}
             </SearchCitiesListTownItem>
           ))}

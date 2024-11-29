@@ -20,45 +20,45 @@ import {
   WeatherDetailsTextContainer,
   WeatherDetailsTitleItem,
   WeatherDetailsValueItem,
-} from "./WeatherDetailsStyles";
+} from "./weatherDetails.styled";
+import { formatTime } from "../../utils/date/fomatters/date";
 
 export const WeatherDetails = () => {
   const weatherData = useTypedSelector((state) => state.weather);
   const loading = useTypedSelector((state) => state.weather.loading);
+
   const { iconWeatherDetailsSize } = useGetIconSize();
 
   const { currentWeather, forecasts } = weatherData;
   const { daily, hourly } = forecasts;
-
   const todaySunrise = daily[0]?.sunrise;
   const todaySunset = daily[0]?.sunset;
-  const chanceOfRain = hourly[0]?.precipitation_probability || daily[0]?.precipitation_probability;
-  const windSpeed = currentWeather?.current.wind_speed;
+  const chanceOfRain = daily[0]?.precipitation_probability;
+  const windSpeed = currentWeather?.hourly[0]?.wind_speed;
   const uvIndex = daily[0]?.uv_index;
   const feelsLike = hourly[0]?.apparent_temp;
 
-  const formatTime = (timestamp: number): string => {
-    const date = new Date(timestamp * 1000);
-    let hours = date.getHours();
-    const minutes = date.getMinutes();
-    const ampm = hours >= 12 ? "PM" : "AM";
-    hours = hours % 12 || 12;
-    return `${hours}:${minutes < 10 ? "0" : ""}${minutes} ${ampm}`;
-  };
-
   const skeletonStyle = <Skeleton />;
 
-  const weatherDetails = [
+  const weatherDetailsItems = [
     {
       id: "Sunrise",
       label: "Sunrise",
-      value: loading ? skeletonStyle : todaySunrise ? formatTime(todaySunrise) : skeletonStyle,
+      value: loading
+        ? skeletonStyle
+        : todaySunrise
+          ? formatTime(todaySunrise)
+          : skeletonStyle,
       icon: SunriseIcon,
     },
     {
       id: "Sunset",
       label: "Sunset",
-      value: loading ? skeletonStyle : todaySunset ? formatTime(todaySunset) : skeletonStyle,
+      value: loading
+        ? skeletonStyle
+        : todaySunset
+          ? formatTime(todaySunset)
+          : skeletonStyle,
       icon: SunsetIcon,
     },
     {
@@ -74,7 +74,11 @@ export const WeatherDetails = () => {
     {
       id: "Wind",
       label: "Wind",
-      value: loading ? skeletonStyle : windSpeed !== undefined ? `${windSpeed} m/s` : skeletonStyle,
+      value: loading
+        ? skeletonStyle
+        : windSpeed !== undefined
+          ? `${windSpeed} m/s`
+          : skeletonStyle,
       icon: WindIcon,
     },
     {
@@ -105,7 +109,7 @@ export const WeatherDetails = () => {
         <WeatherDetailsText>weather details</WeatherDetailsText>
       </WeatherDetailsTextContainer>
       <WeatherDetailsCardContainer>
-        {weatherDetails.map(({ id, label, value, icon }) => (
+        {weatherDetailsItems.map(({ id, label, value, icon }) => (
           <WeatherDetailsCardInfo key={id}>
             <WeatherDetailsTitleItem>
               <CardLabel>{label}</CardLabel>
@@ -113,11 +117,15 @@ export const WeatherDetails = () => {
             <WeatherDetailsValueItem>
               <CardValue>{value}</CardValue>
               <IconContainer>
-                {loading?<Skeleton/>:<IconLoader
-                  Svg={icon}
-                  height={iconWeatherDetailsSize}
-                  width={iconWeatherDetailsSize}
-                />}
+                {loading ? (
+                  <Skeleton />
+                ) : (
+                  <IconLoader
+                    Svg={icon}
+                    height={iconWeatherDetailsSize}
+                    width={iconWeatherDetailsSize}
+                  />
+                )}
               </IconContainer>
             </WeatherDetailsValueItem>
           </WeatherDetailsCardInfo>

@@ -2,23 +2,24 @@ import React, { useState, ReactNode, useEffect, useMemo } from "react";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "../themes";
 import { ThemeContext, ThemeContextType } from "../context/ThemeContext";
-import { MANUAL_OVERRIDE_LOCAL_STORAGE_KEY, THEME_LOCAL_STORAGE_KEY } from "../constants/themeProvider/localStorage";
+import {
+  MANUAL_OVERRIDE_LOCAL_STORAGE_KEY,
+  THEME_LOCAL_STORAGE_KEY
+} from "../shared/constants/themeProvider/localStorage";
+
+import { ThemeEnum } from '../types/Theme';
 
 interface ThemeProviderProps {
   children: ReactNode;
 }
 
-export enum ThemeEnum {
-  darkTheme = "darkTheme",
-  lightTheme = "lightTheme",
-}
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [theme, setTheme] = useState<ThemeEnum>(ThemeEnum.lightTheme);
   const [manualOverride, setManualOverride] = useState<boolean>(false);
 
   useEffect(() => {
     const storedTheme = localStorage.getItem(THEME_LOCAL_STORAGE_KEY) as ThemeEnum;
-    const storedManualOverride = localStorage.getItem(MANUAL_OVERRIDE_LOCAL_STORAGE_KEY) === 'true';
+    const storedManualOverride = localStorage.getItem(MANUAL_OVERRIDE_LOCAL_STORAGE_KEY) === "true";
 
     if (storedTheme) {
       setTheme(storedTheme);

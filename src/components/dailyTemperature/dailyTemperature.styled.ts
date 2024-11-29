@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { fonts } from "../../fonts/fontStyles";
+import styled from 'styled-components';
+import { fonts } from '../../fonts/fontStyles';
 
 export const ForecastWrapper = styled.section`
   display: flex;
@@ -9,20 +9,19 @@ export const ForecastWrapper = styled.section`
   max-height: 185px;
   border-radius: 22px;
   padding: 15px;
-  border: ${({ theme }) => theme["--border-style"]};
-  background-color: ${({ theme }) => theme["--card-main-background-color"]};
+  border: ${({ theme }) => theme['--border-style']};
+  background-color: ${({ theme }) => theme['--card-main-background-color']};
 
   @media screen and (width: 1024px) and (height: 600px) {
     max-height: 139px;
   }
-    
+
   @media screen and (max-width: 500px) {
     height: 40%;
     padding-bottom: 5px;
     padding-top: 5px;
     min-height: 154px;
   }
-    
 `;
 
 export const ForecastContainer = styled.div`
@@ -36,18 +35,20 @@ export const ForecastContainer = styled.div`
   @media screen and (min-width: 500px) and (max-width: 799px) {
     padding: 6px 23px;
   }
+
   @media screen and (max-width: 500px) {
     padding: 4px 23px;
   }
+
   @media screen and (width: 1024px) and (height: 600px) {
     margin: 0;
   }
-
 `;
+
 export const ForecastTextContainer = styled.div`
   display: flex;
   border-radius: 8px;
-  color: ${({ theme }) => theme["--card-title-color"]};
+  color: ${({ theme }) => theme['--card-title-color']};
   font-family: ${fonts.Body_2};
   text-transform: uppercase;
 
@@ -55,13 +56,13 @@ export const ForecastTextContainer = styled.div`
     font-size: 13px;
     padding: 3px 0 3px 10px;
   }
-
 `;
 
 export const ScrollArea = styled.div`
-  display: flex;
-  width: 100%;
-  transition: transform 0.3s ease;
+    display: flex;
+    width: 100%;
+    transition: transform 0.6s;
+    will-change: transform;
 `;
 
 export const ForecastItemContainer = styled.div`
@@ -76,7 +77,7 @@ export const ForecastItemContainer = styled.div`
   height: 106px;
   max-width: 95px;
   max-height: 108px;
-  background-color: ${({ theme }) => theme["--card-item-background-color"]};
+  background-color: ${({ theme }) => theme['--card-item-background-color']};
   font-family: ${fonts.Body_2};
 
   &:first-child {
@@ -99,19 +100,19 @@ export const ArrowButton = styled.button<{ direction: string }>`
   z-index: 1;
   border: none;
 
-  ${({ direction }) => (direction === "left" ? "left: 0;" : "right: 0;")}
+  ${({ direction }) => (direction === 'left' ? 'left: 0;' : 'right: 0;')}
   &:hover {
     opacity: 0.7;
   }
 `;
 
-export const TempStyle = styled.div`
-  color: ${({ theme }) => theme["--temp-indicator-color"]};
+export const TemperatureValue = styled.div`
+  color: ${({ theme }) => theme['--temp-indicator-color']};
 `;
 
-export const DateTimeStyle = styled.div`
+export const DateTime = styled.div`
   text-align: center;
-  color: ${({ theme }) => theme["--card-title-color"]};
+  color: ${({ theme }) => theme['--card-title-color']};
 `;
 
 export const ScrollAreaContainer = styled.div`

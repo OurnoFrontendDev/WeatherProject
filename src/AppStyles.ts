@@ -7,20 +7,21 @@ export const AppWrapper = styled.main`
   align-items: center;
   background-color: ${({ theme }) => theme["--app-background-color"]};
   padding: 32px 10px 0;
+  gap: 30px;
   height: 80vh;
   width: 65vw;
 
-    @media screen and (min-width: 500px) and (max-width: 960px) {
-        padding: 32px 10px 10px;
-        height: 100vh;
-        width: 100vw;
-    }
-    @media screen and (max-width: 500px) {
-        padding: 30px 10px 10px;
-        height: 100vh;
-        width: 100vw;
-    }
-    
+  @media screen and (min-width: 500px) and (max-width: 960px) {
+    padding: 32px 10px 10px;
+    height: 100vh;
+    width: 100vw;
+  }
+  @media screen and (max-width: 500px) {
+    padding: 30px 10px 10px;
+    height: 100vh;
+    width: 100vw;
+  }
+
   @media screen and (width: 360px) and (height: 740px) {
     justify-content: flex-start;
     padding: 5px;

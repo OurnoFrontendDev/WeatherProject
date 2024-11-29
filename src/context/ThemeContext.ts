@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { ThemeEnum } from "../provider";
+import { ThemeEnum } from '../types/Theme';
 
 export interface ThemeContextType {
   theme: ThemeEnum.darkTheme|ThemeEnum.lightTheme;
@@ -7,6 +7,6 @@ export interface ThemeContextType {
 }
 
 export const ThemeContext = createContext<ThemeContextType>({
-  theme: ThemeEnum.lightTheme,
+  theme: ThemeEnum.darkTheme,
   changeTheme: () => {},
 });

@@ -9,7 +9,7 @@ import {
   SwitchLabelThemeToggle,
   ToggleThumbThemeToggle,
 } from "./toggleThemeStyles";
-import { ThemeEnum } from "../../provider";
+import { ThemeEnum } from '../../types/Theme';
 
 const getThemeFromLocalStorage = () => {
   return localStorage.getItem("theme") || ThemeEnum.lightTheme;

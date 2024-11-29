@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import { switcherIconColor } from '../../themes';
 
 export const SwitchLabel = styled.label`
   display: block;
@@ -25,7 +26,7 @@ export const HiddenInput = styled.input`
 export const ToggleThumb = styled.div<{ checked: boolean }>`
   position: absolute;
   top: 50%;
-  left: ${(props) => (props.checked ? "32px" : "1px")};
+  left: ${(props) => (props.checked ? '32px' : '1px')};
   height: 28px;
   width: 28px;
   background-color: #4f46e5;
@@ -36,8 +37,8 @@ export const ToggleThumb = styled.div<{ checked: boolean }>`
 `;
 
 export interface LabelTextProps {
-  readonly $isActive: boolean;
-  $position: "left" | "right";
+  $isActive: boolean;
+  $position: 'left' | 'right';
 }
 
 export const LabelText = styled.span<LabelTextProps>`
@@ -45,7 +46,7 @@ export const LabelText = styled.span<LabelTextProps>`
   top: 50%;
   transform: translateY(-50%);
   user-select: none;
-  color: ${(props) => (props.$isActive ? "#ffffff" : "#1f2937")};
-  ${(props) => props.$position === "left" && `left: 6.5px;`}
-  ${(props) => props.$position === "right" && `right: 7px;`}
+  color: ${(props) => (props.$isActive ? switcherIconColor['--switcher-icon-active-color'] : switcherIconColor['--switcher-icon-unActive-color'])};
+  ${(props) => props.$position === 'left' && `left: 6.5px;`}
+  ${(props) => props.$position === 'right' && `right: 7px;`}
 `;

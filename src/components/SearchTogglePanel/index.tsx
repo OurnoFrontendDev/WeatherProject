@@ -1,15 +1,15 @@
 import React from "react";
-import { TempUnitSwitcher } from "../TempUnitSwitcher";
 import { SearchCityWeather } from "../searchCityWeather";
 import { ToggleSwitchTheme } from "../toggleTheme";
 import {
-  CityTempThemeSwitchContainer,
+  SwitchTemperatureMetricContainer,
   SearchCityWeatherContainer, ThemeTemperatureToggleContainer,
-} from "./SearchTogglePanelStyles";
+} from "./searchTogglePanel.styled";
+import { TempUnitSwitcher } from '../TempUnitSwitcher';
 
-export const SearchTogglePanelContainer = () => {
+export const SearchToggleTemperatureUnitPanel = () => {
   return (
-    <CityTempThemeSwitchContainer>
+    <SwitchTemperatureMetricContainer>
       <SearchCityWeatherContainer>
         <SearchCityWeather />
       </SearchCityWeatherContainer>
@@ -17,6 +17,6 @@ export const SearchTogglePanelContainer = () => {
         <ToggleSwitchTheme />
         <TempUnitSwitcher />
       </ThemeTemperatureToggleContainer>
-    </CityTempThemeSwitchContainer>
+    </SwitchTemperatureMetricContainer>
   );
 };

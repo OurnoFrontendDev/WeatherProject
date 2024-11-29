@@ -1,11 +1,11 @@
 import { useWeatherInfo } from "../../hooks/useWeatherIconInfo";
 import { IconLoader } from "../IconLoader";
-import { IconDescription } from "../weekForecast/weekForecastStyles";
+import { IconDescription } from "../weekForecast/weekForecast.styled";
 import { useGetIconSize } from "../../hooks/useGetIconSize";
 import React from "react";
 
 type WeatherIconType = {
-  iconCode: number[];
+  iconCode: number
   withDescription?: boolean;
   context: "weatherDetails" | "forecast";
 };

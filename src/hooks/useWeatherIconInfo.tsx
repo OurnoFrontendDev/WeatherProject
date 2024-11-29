@@ -38,7 +38,7 @@ interface WeatherInfo {
   image: string;
 }
 
-export function useWeatherInfo(code: number[]): WeatherInfo | null {
+export function useWeatherInfo(code: number): WeatherInfo | null {
   const [weatherInfo, setWeatherInfo] = useState<WeatherInfo | null>(null);
 
   useEffect(() => {

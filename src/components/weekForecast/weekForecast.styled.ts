@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import { fonts } from "../../fonts/fontStyles";
+import styled from 'styled-components';
+import { fonts } from '../../fonts/fontStyles';
 
 export const WeekForecastWrapper = styled.section`
   display: flex;
-  background-color: ${({ theme }) => theme["--card-main-background-color"]};
+  background-color: ${({ theme }) => theme['--card-main-background-color']};
   flex-direction: column;
   width: 100%;
   height: 100%;
@@ -18,7 +18,7 @@ export const WeekForecastWrapper = styled.section`
 
 export const DaysForecastText = styled.div`
   font-family: ${fonts.Body_2};
-  color: ${({ theme }) => theme["--card-title-color"]};
+  color: ${({ theme }) => theme['--card-title-color']};
   text-transform: uppercase;
 
   @media screen and (min-width: 300px) and (max-width: 699px) {
@@ -29,6 +29,7 @@ export const DaysForecastText = styled.div`
     margin: 0;
   }
 `;
+
 export const WeekForecastTextContainer = styled.div`
   display: flex;
   width: 100%;
@@ -37,19 +38,22 @@ export const WeekForecastTextContainer = styled.div`
   @media screen and (min-width: 800px) and (max-width: 999px) {
     max-height: 49px;
   }
+    
   @media screen and (max-width: 500px) {
     padding-bottom: 5px;
     padding-top: 5px;
   }
 `;
+
 export const WeekForecastContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 90%;
-  border: ${({ theme }) => theme["--border-style"]};
-  background-color: ${(props) => props.theme["--card-item-background-color"]};
+  border: ${({ theme }) => theme['--border-style']};
+  background-color: ${(props) => props.theme['--card-item-background-color']};
 `;
+
 export const WeekForecastCardContent = styled.div`
   display: flex;
   width: 100%;
@@ -67,9 +71,10 @@ export const WeekForecastCardContent = styled.div`
     padding: 5px;
   }
 `;
+
 export const WeekForecastCardDatesContainer = styled.div`
   display: flex;
-  width: 65%;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -96,35 +101,29 @@ export const WeekForecastCardDate = styled.div`
   align-items: center;
   width: 100%;
   font-family: ${fonts.Body};
-  color: ${({ theme }) => theme["--card-title-color"]};
+  color: ${({ theme }) => theme['--card-title-color']};
 
-  @media screen and (min-width: 700px) and (max-width: 799px) {
-    padding-left: 10px;
-  }
-  @media screen and (min-width: 670px) and (max-width: 699px) {
-    padding-top: 1px;
+  @media screen and (max-width: 352px) {
     font-size: 13px;
-    white-space: nowrap;
-    padding-left: 0;
-    justify-content: center;
-    align-items: center;
   }
-  @media screen and (min-width: 392px) and (max-width: 669px) {
-    padding: 0;
-    white-space: nowrap;
+
+  @media screen and (max-width: 326px) {
+    font-size: 11px;
   }
 `;
+
 export const WeekForecastCardDay = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
   align-items: center;
   font-family: ${fonts.Body};
-  color: ${({ theme }) => theme["--card-title-color"]};
+  color: ${({ theme }) => theme['--card-title-color']};
 
   @media screen and (min-width: 700px) and (max-width: 799px) {
     padding-left: 6px;
   }
+
   @media screen and (min-width: 670px) and (max-width: 699px) {
     font-size: 13px;
     padding-left: 5px;
@@ -141,7 +140,16 @@ export const WeekForecastCardDay = styled.div`
     justify-content: center;
     font-size: 12px;
   }
+    
+  @media screen and (max-width: 352px) {
+    font-size: 13px;
+  }
+
+  @media screen and (max-width: 326px) {
+    font-size: 11px;
+  }
 `;
+
 export const WeekForecastCardIconContainer = styled.div`
   display: flex;
   width: 100%;
@@ -153,47 +161,25 @@ export const WeekForecastCardIconContainer = styled.div`
 export const WeekForecastCardTemp = styled.div`
   font-size: ${fonts.Body};
 
-  @media screen and (max-width: 392px) {
-    font-size: 12px;
+  @media screen and (max-width: 326px) {
+   font-size: 11px;
   }
 `;
+
 export const WeekForecastCardTempContainer = styled.div`
     display: flex;
-    width: 40%;
+    width: 100%;
     height: 100%;
     align-items: center;
     justify-content: center;
     gap: 2px;
-    color: ${({ theme }) => theme["--card-title-color"]};
+    color: ${({ theme }) => theme['--card-title-color']};
 
-    @media screen and (max-width: 977px) {
-        flex-direction: column;
+    @media screen and (max-width: 499px) {
+        width: 55%;
     }
+}`;
 
-
-    @media screen and (min-width: 500px) and (max-width: 584px) {
-        flex-direction: column;
-    }
-
-    @media screen and (max-width: 500px) {
-        flex-direction: row;
-    }
-
-    @media screen and (width: 300px) and (height: 333px) {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding-left: 0;
-    }
-
-    @media screen and (width: 853px) and (height: 1280px) {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding-left: 0;
-    }
-}
-`;
 export const IconDescription = styled.div`
   display: flex;
   width: 100%;
@@ -201,12 +187,8 @@ export const IconDescription = styled.div`
   justify-content: center;
   text-align: center;
   align-items: center;
-  color: ${({ theme }) => theme["--card-title-color"]};
+  color: ${({ theme }) => theme['--card-title-color']};
   font-size: ${fonts.Body};
-
-  @media screen and (max-width: 500px) {
-    width: 65%;
-  }
 
   @media screen and (min-width: 800px) and (max-width: 845px) {
     font-size: 13px;
@@ -225,11 +207,11 @@ export const IconDescription = styled.div`
     font-size: 13px;
   }
 
-  @media screen and (width: 375px) and (max-width: 667px) {
-    font-size: 10px;
+  @media screen and (max-width: 352px) {
+    font-size: 13px;
   }
 
-  @media screen and (width: 360px) {
-    font-size: 12px;
+  @media screen and (max-width: 326px) {
+    font-size: 11px;
   }
 `;

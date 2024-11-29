@@ -1,7 +1,8 @@
-import styled from "styled-components";
-import { fonts } from "../../fonts/fontStyles";
+import styled from 'styled-components';
+import { fonts } from '../../fonts/fontStyles';
+import { searchCitiesList, searchCitiesListTownItemColor } from '../../themes';
 
-export const InputSearchBar = styled.input`
+export const SearchWeatherInput = styled.input`
   &::placeholder {
     padding-left: 6px;
     padding-top: 20px;
@@ -13,7 +14,7 @@ export const InputSearchBar = styled.input`
     }
   }
 
-  background-color: ${({ theme }) => theme["input-background-color"]};
+  background-color: ${({ theme }) => theme['input-background-color']};
   width: 100%;
   height: 35px;
   box-sizing: border-box;
@@ -25,19 +26,20 @@ export const InputSearchBar = styled.input`
   @media screen and (min-width: 599px) and (max-width: 768px) {
     width: 100%;
   }
-    
+
   @media screen and (min-width: 320px) and (max-width: 599px) {
     padding-left: 10px;
   }
 `;
+
 export const SearchCitiesList = styled.ul`
   position: absolute;
   width: 100%;
   top: 100%;
   left: 0;
   right: 0;
-  background-color: #fff;
-  border: 1px solid #ccc;
+  background-color: ${searchCitiesList['--search-cities-list-color']};
+  border: ${searchCitiesList['--search-cities-list-border']};
   z-index: 100;
   list-style: none;
   padding: 0;
@@ -47,12 +49,10 @@ export const SearchCitiesList = styled.ul`
 `;
 
 export const SearchCitiesListTownItem = styled.li`
-    cursor: pointer;
-    padding: 10px;
-    
-    &:hover{
-        background-color: aqua;
-    }
+  cursor: pointer;
+  padding: 10px;
+
+  &:hover {
+    background-color: ${searchCitiesListTownItemColor['--search-cities-list--item-hover-color']};
+  }
 `;
-
-
